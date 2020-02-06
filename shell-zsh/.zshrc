@@ -128,3 +128,11 @@ bindkey -M vicmd 'j' history-substring-search-down
 # Instead just use a nice bold
 HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND=bold
 HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND=fg=red,bold
+
+# lazy loading the bash completions does not save us meaningful shell startup time, so we won't do it
+export NVM_DIR="$HOME/.local/share/nvm"
+[ -s "$NVM_DIR/etc/bash_completion" ] && . "$NVM_DIR/etc/bash_completion"  # This loads nvm bash_completion
+# add our default nvm node (`nvm alias default 10.16.0`) to path without loading nvm
+export PATH="$NVM_DIR/versions/node/v$(<$NVM_DIR/alias/default)/bin:$PATH"
+# alias `nvm` to this one liner lazy load of the normal nvm script
+alias nvm="unalias nvm; [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"; nvm $@"

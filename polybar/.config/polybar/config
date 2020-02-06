@@ -1,10 +1,13 @@
 ; vim:ft=dosini
 [colors]
-background = #affadef9
+;background = #affadef9
 ;background = #00000000
-background-alt = #300fdfdfd
+background = #af222222
+;background-alt = #300fdfdfd
+background-alt = #30444444
 ;foreground = ${xrdb:color7:#222}
-foreground = #1c1c1c
+;foreground = #1c1c1c
+foreground = #dfdfdf
 ;foreground-alt = #e0e0e0
 foreground-alt = #808080
 #primary = ${xrdb:color3}
@@ -17,7 +20,7 @@ unfocused = #C4C7C5
 [bar/main]
 monitor = ${env:MONITOR:HDMI-0}
 width = 100%
-height = 30
+height = 25
 fixed-center = false
 
 background = ${colors.background}
@@ -35,7 +38,7 @@ font-5 = WenQuanYi Micro Hei Mono:style=Regular:size=10;1
 font-6 = Noto Sans CJK JP:style=Regular:size=10;1
 
 modules-left = i3 xwindow
-modules-right = mpd pulseaudio disk homedisk eth date
+modules-right = mpd pulseaudio disk wlan battery date
 
 tray-position = right
 tray-padding = 0
@@ -93,15 +96,15 @@ label-urgent-padding = 2
 [module/disk]
 type = internal/fs
 mount-0 = /
-interval = 10
+interval = 300
 label-mounted =  %used%/%total%
 format-mounted-underline = #73291c
 format-mounted-padding = 1
-
+
 [module/homedisk]
 type = internal/fs
 mount-0 = /home
-interval = 10
+interval = 300
 label-mounted =  %used%/%total%
 format-mounted-underline = #317070
 format-mounted-padding = 1
@@ -139,6 +142,31 @@ format-stopped =  Stopped
 format-stopped-underline = ${self.format-playing-underline}
 format-stopped-padding = ${self.format-playing-padding}
 
+
+[module/wlan]
+type = internal/network
+interface = wlp3s0
+interval = 15
+
+;format-connected = <ramp-signal> <label-connected>
+format-connected = <label-connected>
+format-connected-underline = #9f78e1
+label-connected = "%{A1:$TERMINAL -name floater -e nmtui &:}  %essid%%{A}"
+;label-connected = %essid%
+
+format-disconnected = <label-disconnected>
+label-disconnected = "%{A1:$TERMINAL -name floater -e nmtui &:}  DISCONNECTED%{A}"
+;format-disconnected-underline = ${self.format-connected-underline}
+label-disconnected-foreground = ${colors.foreground-alt}
+
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
+ramp-signal-foreground = ${colors.foreground-alt}
+
+
 [module/eth]
 type = internal/network
 interface = enp3s0
@@ -154,6 +182,31 @@ format-disconnected-underline = ${self.format-connected-underline}
 label-disconnected = d/c
 label-disconnected-foreground = ${colors.foreground-alt}
 format-disconnected-padding = 1
+
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = AC
+full-at = 99
+
+format-charging = <ramp-capacity>  <label-charging>
+format-charging-underline = #ffb52a
+
+format-discharging = <ramp-capacity>  <label-discharging>
+format-discharging-underline = ${self.format-charging-underline}
+
+format-full =  100%
+# format-full-prefix = " "
+# format-full-prefix-foreground = ${colors.foreground-alt}
+format-full-underline = ${self.format-charging-underline}
+
+ramp-capacity-0 = "%{F#bd2c40}%{F-}"
+ramp-capacity-1 = ""
+ramp-capacity-2 = ""
+ramp-capacity-3 = ""
+ramp-capacity-4 = ""
+ramp-capacity-foreground = ${colors.foreground}
 
 
 [module/pulseaudio]
