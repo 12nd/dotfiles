@@ -1,0 +1,44 @@
+# General
+set color256
+set drawbox
+set icons
+
+set previewer ~/.config/lf/preview
+
+# Commands
+cmd open ${{
+    case $(file --mime-type "$f" -bL) in
+        text/*|inode/x-empty) $EDITOR "$fx";;
+    	application/*tar*|application/zip|application/*7z*|application/*rar*) aunpack "$f";;
+        *) for f in "$fx"; do setsid xdg-open "$f"> /dev/null 2> /dev/null & done;;
+    esac
+}}
+
+
+# Binds
+# Clear some
+map c
+map d
+map bg $setwp "$f"
+map D delete
+map a push %mkdir<space>
+map cw rename
+map cW $vidir
+map dd cut
+map <c-space> unselect
+map P set preview!
+map <bs2> set hidden!
+map - $~/.config/lf/draw_img "$f"
+map X $aunpack "$f"
+#map Z push :zip<space>
+
+# Jumps
+map gh cd ~
+map gr cd /
+map gm cd /media
+map ge cd /etc
+map gu cd /usr
+map gd cd ~/Downloads
+map gD cd ~/Documents
+map gS cd ~/Screenshots
+map gc cd ~/Cloud
