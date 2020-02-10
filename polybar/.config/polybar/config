@@ -151,20 +151,20 @@ interval = 15
 ;format-connected = <ramp-signal> <label-connected>
 format-connected = <label-connected>
 format-connected-underline = #9f78e1
-label-connected = "%{A1:$TERMINAL -name floater -e nmtui &:}  %essid%%{A}"
+label-connected = "%{A1:$TERMINAL -name floater -e nmtui &:} 直 %essid%%{A}"
 ;label-connected = %essid%
 
 format-disconnected = <label-disconnected>
-label-disconnected = "%{A1:$TERMINAL -name floater -e nmtui &:}  DISCONNECTED%{A}"
+label-disconnected = "%{A1:$TERMINAL -name floater -e nmtui &:} 睊 DISCONNECTED%{A}"
 ;format-disconnected-underline = ${self.format-connected-underline}
 label-disconnected-foreground = ${colors.foreground-alt}
 
-ramp-signal-0 = 
-ramp-signal-1 = 
-ramp-signal-2 = 
-ramp-signal-3 = 
-ramp-signal-4 = 
-ramp-signal-foreground = ${colors.foreground-alt}
+; ramp-signal-0 = 
+; ramp-signal-1 = 
+; ramp-signal-2 = 
+; ramp-signal-3 = 
+; ramp-signal-4 = 
+; ramp-signal-foreground = ${colors.foreground-alt}
 
 
 [module/eth]
@@ -196,16 +196,21 @@ format-charging-underline = #ffb52a
 format-discharging = <ramp-capacity>  <label-discharging>
 format-discharging-underline = ${self.format-charging-underline}
 
-format-full =  100%
-# format-full-prefix = " "
+format-full =  100%
+# format-full-prefix = " "
 # format-full-prefix-foreground = ${colors.foreground-alt}
 format-full-underline = ${self.format-charging-underline}
 
-ramp-capacity-0 = "%{F#bd2c40}%{F-}"
-ramp-capacity-1 = ""
-ramp-capacity-2 = ""
-ramp-capacity-3 = ""
-ramp-capacity-4 = ""
+ramp-capacity-0 = "%{F#bd2c40}%{F-}"
+ramp-capacity-1 = ""
+ramp-capacity-2 = ""
+ramp-capacity-3 = ""
+ramp-capacity-4 = ""
+ramp-capacity-5 = ""
+ramp-capacity-6 = ""
+ramp-capacity-7 = ""
+ramp-capacity-8 = ""
+ramp-capacity-9 = ""
 ramp-capacity-foreground = ${colors.foreground}
 
 
@@ -214,10 +219,10 @@ type = internal/pulseaudio
 format-volume-underline = #741180
 format-volume-padding = 1
 format-volume = <label-volume>
-label-volume =  %percentage%%
+label-volume = 墳 %percentage%%
 label-volume-foreground = ${root.foreground}
 
-label-muted =  muted
+label-muted = 婢 muted
 label-muted-foreground = #666
 
 ; bar-volume-width = 10
