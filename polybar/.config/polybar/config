@@ -93,6 +93,7 @@ label-urgent-padding = 2
 ; Separator in between workspaces
 ; label-separator = |
 
+
 [module/disk]
 type = internal/fs
 mount-0 = /
@@ -101,6 +102,7 @@ label-mounted =  %used%/%total%
 format-mounted-underline = #73291c
 format-mounted-padding = 1
 
+
 [module/homedisk]
 type = internal/fs
 mount-0 = /home
@@ -108,6 +110,7 @@ interval = 300
 label-mounted =  %used%/%total%
 format-mounted-underline = #317070
 format-mounted-padding = 1
+
 
 [module/date]
 type = internal/date
@@ -124,6 +127,7 @@ format-underline = #0a6cf5
 format-padding = 1
 
 label = "%{A1:notifytimes:}%date% %time%%{A}"
+
 
 [module/mpd]
 type = internal/mpd
@@ -202,7 +206,7 @@ format-full =  100%
 format-full-underline = ${self.format-charging-underline}
 
 ramp-capacity-0 = "%{F#bd2c40}%{F-}"
-ramp-capacity-1 = ""
+ramp-capacity-1 = "%{F#bd2c40}%{F-}"
 ramp-capacity-2 = ""
 ramp-capacity-3 = ""
 ramp-capacity-4 = ""
@@ -218,12 +222,16 @@ ramp-capacity-foreground = ${colors.foreground}
 type = internal/pulseaudio
 format-volume-underline = #741180
 format-volume-padding = 1
-format-volume = <label-volume>
-label-volume = 墳 %percentage%%
+format-volume = <ramp-volume> <label-volume>
+label-volume = %percentage%%
 label-volume-foreground = ${root.foreground}
 
-label-muted = 婢 muted
+label-muted = ﱝ muted
 label-muted-foreground = #666
+
+; ramp-volume-0 = 奄
+ramp-volume-0 = 奔
+ramp-volume-1 = 墳
 
 ; bar-volume-width = 10
 ; bar-volume-foreground-0 = #3ae87a
@@ -243,9 +251,9 @@ label-muted-foreground = #666
 ; bar-volume-empty-foreground = ${colors.foreground}
 
 
-
 [settings]
 screenchange-reload = true
+
 
 [global/wm]
 margin-top = 0
