@@ -60,4 +60,5 @@ map gu cd /usr
 map gd cd ~/Downloads
 map gD cd ~/Documents
 map gS cd ~/Screenshots
+map gs cd ~/Dropbox/2020/SEM1
 map gc cd ~/Cloud
