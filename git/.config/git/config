@@ -1,0 +1,17 @@
+[user]
+	email = ho.james142@gmail.com
+	name = James Ho
+[alias]
+	c = commit
+	p = push
+	s = status
+	rv = remote -v
+	a = add
+	aa = add .
+	co = checkout
+	cam = commit -a -m
+	cm = commit -m
+	d = diff
+	cob = checkout -b
+[include]
+	path = ~/.config/git/user
