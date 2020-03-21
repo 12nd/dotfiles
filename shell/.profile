@@ -25,6 +25,7 @@ export WGETRC="$HOME/.config/wget/wgetrc"
 export ZDOTDIR="$HOME/.config/zsh"
 export VIMINIT=":source $HOME/.config/nvim/init.vim"
 export CARGO_HOME="$HOME/.local/share/cargo"
+export NOTMUCH_CONFIG="$HOME/.config/notmuch-config"
 
 # Tool configs
 export SUDO_ASKPASS="$HOME/.scripts/tools/dpass"

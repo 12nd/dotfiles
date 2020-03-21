@@ -1,17 +1,12 @@
 ; vim:ft=dosini
 [colors]
-;background = #affadef9
-;background = #00000000
 background = #af222222
-;background-alt = #300fdfdfd
-background-alt = #30444444
-;foreground = ${xrdb:color7:#222}
-;foreground = #1c1c1c
+; background-alt = #30444444
+background-alt = #66222222
 foreground = #dfdfdf
-;foreground-alt = #e0e0e0
 foreground-alt = #808080
-#primary = ${xrdb:color3}
-primary = #f591fa
+; primary = #f591fa
+primary = ${xrdb:color1:#222}
 secondary = ${xrdb:color5}
 alert = ${xrdb:color1}
 accent = #B4BC67

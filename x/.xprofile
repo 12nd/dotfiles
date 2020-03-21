@@ -16,6 +16,7 @@ urxvtd -f & # terminal
 dunst & # notifs
 unclutter & # hides mouse after delay
 numlockx & # numlock ON by default
+wal -R # wal
 
 # Additionals
 ! pgrep -x "redshift" && redshift -l 37.8136:144.9631 -t 6500K:2700K & # f.lux style with melbourne and warms
@@ -46,3 +47,5 @@ xidlehook \
 	--timer 15 \
 		"light-locker-command -l" \
 		"" &
+# Keep from sleeping tool
+caffeine &
