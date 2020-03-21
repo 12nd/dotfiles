@@ -40,8 +40,8 @@ Plug 'ctrlpvim/ctrlp.vim' " Use ctrl+p for fuzzy files
 " More heavy, IDE-like stuff
 " Autocompltion + snippets (coc) - run the following:
 "     - :CocInstall coc-python coc-bibtex coc-texlab coc-ultisnips
-"Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-"Plug 'honza/vim-snippets' " The actual snippets
+ Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+ Plug 'honza/vim-snippets' " The actual snippets
 
 
 " Syntax stuff
