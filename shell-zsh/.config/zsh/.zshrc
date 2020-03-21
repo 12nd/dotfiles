@@ -27,6 +27,7 @@ setopt pushd_minus
 zstyle ':completion:*' menu select
 eval "$(dircolors)"
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 autoload -Uz compinit && compinit
 
 
