@@ -25,15 +25,13 @@ line-size = 2
 line-color = {$xrdb:color1}
 
 font-0 = mono:pixelsize=10;1
-font-1 = FontAwesome5Free:style=Solid:size=8;1
-font-2 = FontAwesome5Free:style=Regular:size=8;1
-font-3 = FontAwesome5Brands:style=Regular:size=8;1
-font-4 = NanumGothicCoding:style=Regular:size=10;1
-font-5 = WenQuanYi Micro Hei Mono:style=Regular:size=10;1
-font-6 = Noto Sans CJK JP:style=Regular:size=10;1
+font-1 = NanumGothicCoding:style=Regular:size=10;1
+font-2 = WenQuanYi Micro Hei Mono:style=Regular:size=10;1
+font-3 = Noto Sans CJK JP:style=Regular:size=10;1
+font-4 = Noto Color Emoji:style=Regular:scale=10;2
 
 modules-left = i3 xwindow
-modules-right = mpd pulseaudio disk wlan battery date
+modules-right = corona pulseaudio disk wlan battery date
 
 tray-position = right
 tray-padding = 0
@@ -245,6 +243,15 @@ ramp-volume-1 = 墳
 ; bar-volume-empty-font = 2
 ; bar-volume-empty-foreground = ${colors.foreground}
 
+
+[module/corona]
+type = custom/script
+interval = 300
+exec = coronaupd
+format-underline = #8c1111
+
+click-left = $TERMINAL -name floater -e coronaupd show
+click-right = $TERMINAL -name floater -e coronaupd showau
 
 [settings]
 screenchange-reload = true
