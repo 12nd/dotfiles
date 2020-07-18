@@ -148,11 +148,11 @@ interval = 15
 ;format-connected = <ramp-signal> <label-connected>
 format-connected = <label-connected>
 format-connected-underline = #9f78e1
-label-connected = "%{A1:$TERMINAL -name floater -e nmtui &:}直 %essid%%{A}"
+label-connected = "%{A1:$TERMINAL -n floater -e nmtui &:}直 %essid%%{A}"
 ;label-connected = %essid%
 
 format-disconnected = <label-disconnected>
-label-disconnected = "%{A1:$TERMINAL -name floater -e nmtui &:} 睊 DISCONNECTED%{A}"
+label-disconnected = "%{A1:$TERMINAL -n floater -e nmtui &:} 睊 DISCONNECTED%{A}"
 ;format-disconnected-underline = ${self.format-connected-underline}
 label-disconnected-foreground = ${colors.foreground-alt}
 
@@ -250,8 +250,8 @@ interval = 300
 exec = coronaupd
 format-underline = #8c1111
 
-click-left = $TERMINAL -name floater -e coronaupd show
-click-right = $TERMINAL -name floater -e coronaupd showau
+click-left = $TERMINAL -n floater -e coronaupd show
+click-right = $TERMINAL -n floater -e coronaupd showau
 
 [settings]
 screenchange-reload = true
