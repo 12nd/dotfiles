@@ -53,12 +53,12 @@ super + control + r
 # misc
 # term spawn float for convenience
 super + control + Return
-	$TERMINAL -name floater
+	$TERMINAL -n floater
 super + u
 	i3-msg scratchpad show
 # scratchpad tmux if ded
 super + control + u
-	$TERMINAL -name quickterm -e tmux
+	$TERMINAL -n quickterm -e tmux
 # lock
 super + Delete
 	xidlehook-client --socket $HOME/.config/xidlehook.lock control --action Trigger --timer 1
@@ -95,15 +95,15 @@ super + a
 super + p
 	keepassxc
 super + shift + p
-	$TERMINAL -name floater -e htop
+	$TERMINAL -n floater -e htop
 super + control + p
-	$TERMINAL -name floater -e sudo powertop
+	$TERMINAL -n floater -e sudo powertop
 super + shift + a
-	$TERMINAL -name floater -e pulsemixer
+	$TERMINAL -n floater -e pulsemixer
 super + shift + n
 	notekit
 super + n
-	$TERMINAL -name floater -e ncmpcpp
+	$TERMINAL -n floater -e ncmpcpp
 super + {control,alt} + n
 	mpdshuffle{_, stop}
 super + m
@@ -114,7 +114,7 @@ super + c
 super + shift + c
 	gnome-calculator
 super + control + c
-	$TERMINAL -name floater -e octave
+	$TERMINAL -n floater -e octave
 super + shift + o
 	obs
 super + b
