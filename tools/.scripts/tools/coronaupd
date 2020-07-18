@@ -13,4 +13,4 @@ dl() { curl -s "https://corona-stats.online/AU?source=1&format=json" > "$HOME/.c
 [ ! -e "$HOME/.cache/corona-stats" ] && dl
 test $(find "$HOME/.cache/corona-stats" -mmin +120) && dl
 
-jq -r '.[] | select(.province=="Victoria") | "😷 \(.confirmed)(+\(.confirmedByDay[-1]-.confirmedByDay[-2])) ☠ \(.deaths)(+\(.deathsByDay[-1]-.deathsByDay[-2]))"' "$HOME/.cache/corona-stats"
+jq -r '.[] | select(.province=="Victoria") | "😷 \(.confirmed)(+\(.confirmedByDay[-1]-.confirmedByDay[-2])) ☠ \(.deaths)(+\(.deathsByDay[-1]-.deathsByDay[-2]))"' "$HOME/.cache/corona-stats" 2>/dev/null
