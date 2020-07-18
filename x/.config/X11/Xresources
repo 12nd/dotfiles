@@ -26,8 +26,8 @@ URxvt.url-launcher: /usr/bin/xdg-open
 URxvt.matcher.button: 1
 
 ! st settings
-st.font: Inconsolata Nerd Font Mono:pixelsize=15:antialias=true:autohint=true,NanumGothicCoding:pixelsize=15,WenQuanYi Micro Hei Mono:pixelsize=15
-st.alpha: 0.95
+St.font: Inconsolata Nerd Font Mono:pixelsize=15:antialias=true:autohint=true,NanumGothicCoding:pixelsize=15,WenQuanYi Micro Hei Mono:pixelsize=15
+St.alpha: 0.95
 
 ! Misc XTerm settings just as a fallback term
 ! Use truetype in XTerm
