@@ -12,7 +12,7 @@ Xft.dpi: 105
 URxvt.depth: 32
 URxvt.background: [83]#050505
 URxvt.scrollBar: false
-URxvt.font: xft:Inconsolata Nerd Font Mono:size=11,xft:NanumGothicCoding:size=11,xft:WenQuanYi Micro Hei Mono:size=11
+URxvt.font: xft:Inconsolata Nerd Font Mono:size=14,xft:NanumGothicCoding:size=14,xft:WenQuanYi Micro Hei Mono:size=14
 URxvt.letterSpace: -1
 URxvt.iso14755: false
 URxvt.iso14755_52: false
@@ -25,7 +25,9 @@ URxvt.perl-ext-common: default,matcher,selection-to-clipboard,resize-font
 URxvt.url-launcher: /usr/bin/xdg-open
 URxvt.matcher.button: 1
 
-
+! st settings
+st.font: Inconsolata Nerd Font Mono:pixelsize=15:antialias=true:autohint=true,NanumGothicCoding:pixelsize=15,WenQuanYi Micro Hei Mono:pixelsize=15
+st.alpha: 0.95
 
 ! Misc XTerm settings just as a fallback term
 ! Use truetype in XTerm
