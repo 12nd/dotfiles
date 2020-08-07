@@ -25,10 +25,11 @@ line-size = 2
 line-color = {$xrdb:color1}
 
 font-0 = mono:pixelsize=10;1
-font-1 = NanumGothicCoding:style=Regular:size=10;1
-font-2 = WenQuanYi Micro Hei Mono:style=Regular:size=10;1
-font-3 = Noto Sans CJK JP:style=Regular:size=10;1
-font-4 = Noto Color Emoji:style=Regular:scale=10;2
+font-1 = Symbols Nerd Font:size=10
+font-2 = NanumGothicCoding:style=Regular:size=10;1
+font-3 = WenQuanYi Micro Hei Mono:style=Regular:size=10;1
+font-4 = Noto Sans CJK JP:style=Regular:size=10;1
+font-5 = Noto Color Emoji:style=Regular:scale=10;2
 
 modules-left = i3 xwindow
 modules-right = corona pulseaudio disk wlan battery date
