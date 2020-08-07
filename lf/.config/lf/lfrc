@@ -76,7 +76,7 @@ map ge cd /etc
 map gu cd /usr
 map gd cd ~/Downloads
 map gD cd ~/Documents
-map gs cd ~/Dropbox/2020/SEM1
+map gs cd ~/Dropbox/2020/SEM2
 map gS cd ~/Screenshots
 map gc cd ~/Cloud
 map gt cd ~/.local/share/Trash/files
