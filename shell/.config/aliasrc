@@ -29,7 +29,7 @@ alias lsl="ls -l"
 alias lsla="ls -la"
 alias rcp="rsync -vzrh --times --stats --progress --itemize-changes"
 # Open term in same dir (can't use PID as using daemon)
-alias termdir="(urxvtc)"
+alias termdir="(st)"
 
 # Package manager (pacman)
 alias p="sudo pacman"
@@ -41,6 +41,7 @@ alias pQ="pacman -Q"
 alias y="yay"
 alias yS="yay -S"
 alias yR="yay -R"
+alias yU="yay -Syu"
 
 # Service management
 alias s="systemctl"
@@ -72,7 +73,7 @@ alias cfi="$EDITOR ~/.config/i3/config"
 alias cfo="$EDITOR ~/.config/polybar/config"
 alias cfs="$EDITOR ~/.config/sxhkd/sxhkdrc"
 alias cfc="$EDITOR ~/.config/picom.conf"
-alias cfr="$EDITOR ~/.config/ranger/rc.conf"
+alias cflf="$EDITOR ~/.config/lf/lfrc"
 alias cfx="$EDITOR ~/.xprofile"
 alias cfxr="$EDITOR ~/.config/X11/Xresources"
 
