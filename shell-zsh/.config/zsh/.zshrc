@@ -2,7 +2,7 @@
 # idk what i'm doing so yeah.
 
 # Setup the prompt (PS1)
-PS1="%F{014}%n%f%F{243}@%f%F{176}%m%f%F{243}:%f%~ » "
+PS1="%F{014}%n%f%F{243}@%f%F{176}%m%f%F{243}:%f%(5~|%-2~/…/%2~|%4~) » "
 
 
 # Historys
