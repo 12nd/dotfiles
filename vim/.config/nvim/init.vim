@@ -26,6 +26,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 " Colour scheme
 Plug 'danilo-augusto/vim-afterglow'
+Plug 'dylanaraps/wal.vim'
 
 " Some core things we want
 Plug 'tpope/vim-commentary' " Commenting ('gcc')
@@ -69,6 +70,7 @@ set nohlsearch
 set splitbelow splitright " why isn't this the default?
 
 colorscheme afterglow
+" colorscheme wal
 
 
 "  Tabs - 4 wide
@@ -90,6 +92,9 @@ autocmd BufWritePost *Xresources,*Xdefaults !xrdb -merge %
 "  lightline
 set laststatus=2
 let g:lightline = { 'colorscheme': 'jellybeans', }
+
+" vimtex
+let g:tex_flavor = 'latex'
 
 "  coc.nvim
 "  Tab/S-Tab for completion
