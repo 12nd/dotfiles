@@ -59,7 +59,7 @@ map cW $vidir
 map dd cut
 map <c-space> unselect
 map P set preview!
-map <bs2> set hidden!
+map <backspace2> set hidden!
 map - $~/.config/lf/draw_img "$f"
 map X $aunpack "$f"
 map Z push :zip<space>
