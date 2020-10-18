@@ -4,13 +4,21 @@
 
 # click action
 case "$1" in
-	show) curl "https://corona-stats.online?source=1"; read a; exit ;;
-	showau) curl "https://corona-stats.online/AU?source=1"; read a; exit ;;
+	show) curl -s "https://corona-stats.online" | less -r && exit ;;
+	showau) curl -s "https://corona-stats.online/AU?source=1" | less -r && exit ;;
+	aujq) curl -s "http://covid-tracker-us.herokuapp.com/v2/locations?source=jhu&country_code=AU" | jq '.' -C | less -r && exit ;;
+	*)
+		case "$BLOCK_BUTTON" in
+			1) $TERMINAL -n floater -g 165x35 -e $0 show ;;
+			2) $TERMINAL -n floater -g 165x35 -e $0 showau ;;
+			3) $TERMINAL -n floater -g 135x35 -e $0 aujq ;;
+		esac
+		;;
 esac
 
-# if file too old or doesnt exist (1hr)
-dl() { curl -s "https://corona-stats.online/AU?source=1&format=json" > "$HOME/.cache/corona-stats" ;}
-[ ! -e "$HOME/.cache/corona-stats" ] && dl
-test $(find "$HOME/.cache/corona-stats" -mmin +120) && dl
+# if file too old or doesnt exist (6hr)
+dl() { curl -s "https://covid-tracker-us.herokuapp.com/v2/locations/14?source=jhu&timelines=true" > "$HOME/.cache/corona-stats" ;}
+test $(find "$HOME/.cache/corona-stats" -mmin +360 2>/dev/null) && rm "$HOME/.cache/corona-stats"
+[ ! -s "$HOME/.cache/corona-stats" ] && dl
 
-jq -r '.[] | select(.province=="Victoria") | "😷 \(.confirmed)(+\(.confirmedByDay[-1]-.confirmedByDay[-2])) ☠ \(.deaths)(+\(.deathsByDay[-1]-.deathsByDay[-2]))"' "$HOME/.cache/corona-stats" 2>/dev/null
+jq -r '.location | [.timelines.confirmed.timeline[]] as $ct | [.timelines.deaths.timeline[]] as $dt | "\($ct[-1])(+\($ct[-1]-$ct[-2])),\($dt[-1])(+\($dt[-1]-$dt[-2]))"' "$HOME/.cache/corona-stats" 2>/dev/null || { echo "noapi" && rm ~/.cache/corona-stats ;}
