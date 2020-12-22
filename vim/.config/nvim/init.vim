@@ -78,6 +78,9 @@ set tabstop=4
 set softtabstop=0 noexpandtab
 set shiftwidth=4
 
+"  Centre cursor
+set scrolloff=8
+
 "  Mouse - dont kill me pls
 set mouse=a
 

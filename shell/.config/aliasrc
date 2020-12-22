@@ -9,6 +9,11 @@ alias q="exit"
 alias cl="clear"
 
 
+# Sudo hacks
+alias sudo="sudo "
+alias sudoo="sudo -E "
+
+
 # Some neat general util stuff
 alias ls='ls --color=auto --group-directories-first'
 alias grep="grep --color=auto"
@@ -62,7 +67,7 @@ alias wscan="nmcli device wifi rescan"
 
 
 # Config files / directories quick edit/search
-alias cds="cd ~/.scripts"
+alias cds="cd ~/Dropbox/2020/SEM2"
 alias cdf="cd ~/.dotfiles"
 alias cfv="$EDITOR ~/.config/nvim/init.vim"
 alias cfb="$EDITOR ~/.bashrc"
@@ -88,3 +93,7 @@ alias txm="templateEdit math.tex"
 
 # Fuzzy find file -> vim
 vf() { fzf | xargs -r -I % $EDITOR % ;}
+
+# z util
+_Z_DATA=$HOME/.local/share/z
+[ -r "/usr/share/z/z.sh" ] && source /usr/share/z/z.sh

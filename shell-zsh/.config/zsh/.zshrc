@@ -20,6 +20,7 @@ setopt cdable_vars
 setopt auto_pushd
 # For above, minus should mean reverse (at least to me?)
 setopt pushd_minus
+setopt nomenucomplete
 
 
 # Load zsh completion
@@ -35,6 +36,19 @@ autoload -Uz compinit && compinit
 bindkey -v
 KEYTIMEOUT=1
 bindkey -v '^?' backward-delete-char
+# Ctrl-r
+bindkey '^R' history-incremental-search-backward
+bindkey '^[[R' history-incremental-search-forward
+# Fix delete
+bindkey "^[[3~" delete-char
+bindkey '^S' history-incremental-search-forward
+# Delete
+bindkey '^[[3~' delete-char # xterm
+bindkey '^[[P' delete-char # st
+# Home/End in vicmd
+bindkey -a '^[[H' beginning-of-line
+bindkey -a '^[[F' end-of-line # xterm
+bindkey -a '^[[4~' end-of-line # st
 
 # vi keys for tab complete
 zmodload zsh/complist
