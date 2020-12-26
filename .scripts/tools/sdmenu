@@ -2,9 +2,21 @@
 
 pgrep -x dmenu && exit
 
-case "$(printf "shutdown\\nreboot\\nsuspend\\nlogout" | dmenu -l 4 -i -p "time to leave?")" in
+if pgrep -x dwm; then
+	refreshwm="kill -HUP $(pidof -s dwm)" 
+	exitwm="kill -TERM $(pidof -s dwm)"
+elif pgrep -x bspwm; then
+	refreshwm="bspc wm -r"
+	exitwm="bspc quit"
+elif pgrep -x i3; then
+	refreshwm="i3-msg reload"
+	exitwm="i3-msg exit"
+fi
+
+case "$(printf "shutdown\\nreboot\\nsuspend\\nrefresh\\nlogout" | dmenu -i -p "time to leave?")" in
 	"shutdown") shutdown now ;;
 	"reboot") reboot ;;
 	"suspend") systemctl suspend ;;
-	"logout") i3-msg exit ;;
+	"refresh") `echo $refreshwm` ;;
+	"logout") `echo $exitwm` ;;
 esac

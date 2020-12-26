@@ -1,4 +1,5 @@
 # General
+set color256
 set drawbox
 set icons
 
@@ -13,7 +14,7 @@ cmd open ${{
     case $(file --mime-type "$f" -bL) in
         text/*|inode/x-empty) $EDITOR "$fx";;
     	application/*tar*|application/zip|application/*7z*|application/*rar*) aunpack "$f";;
-        *) for f in "$fx"; do setsid xdg-open "$f"> /dev/null 2> /dev/null & done;;
+        *) for f in "$fx"; do xdg-open "$f"> /dev/null 2> /dev/null; done ;;
     esac
 }}
 
@@ -45,7 +46,8 @@ cmd trash_list $clear && trash-list && read a
 # Clear some
 map c
 map d
-map r
+map r reload
+map S $"$SHELL"
 map bg $setwp "$f"
 map D trash
 map TD trash_empty
@@ -58,11 +60,11 @@ map cW $vidir
 map dd cut
 map <c-space> unselect
 map P set preview!
-map <backspace2> set hidden!
+map <bs2> set hidden!
 map - $~/.config/lf/draw_img "$f"
 map X $aunpack "$f"
 map Z push :zip<space>
-map dr %dragon-drag-and-drop -x "$f"
+map zd %dragon-drag-and-drop -x "$f"
 map zp %libreoffice --convert-to pdf "$f" --headless
 map zr &readdoc "$f"
 
@@ -70,11 +72,10 @@ map zr &readdoc "$f"
 map gh cd ~
 map gr cd /
 map gm cd /media
-map gM cd /mnt
 map ge cd /etc
 map gu cd /usr
 map gd cd ~/Downloads
 map gD cd ~/Documents
-map gs cd ~/Dropbox/2020/SEM2
-map gc cd ~/.config
+map gS cd ~/Screenshots
+map gc cd ~/Cloud
 map gt cd ~/.local/share/Trash/files

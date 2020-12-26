@@ -1,28 +1,51 @@
-# Text editor crap
-*.swp
-*.swo
-
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-
-# Node
-node_modules/
-
-# OS crap
-.DS_Store
-Thumbs.db
-
-# Other
-*.log
+# Ignore all
+/*
 
 
-# vim stuffs
-vim/.vim/.netrwhist
-vim/.vim/plugged/
-vim/.vim/autoload/plug.vim
+# Exclusions
+# Allow dotfiles in ~, but don't allow folders starting with dot
+!.*
+.*/
 
-# qutebrowser
-qutebrowser/.config/qutebrowser/autoconfig.yml
-qutebrowser/.config/qutebrowser/qsettings/
+# Folders (and their subdirs)
+!/.config/
+
+!/.scripts/
+/.scripts/personal
+
+!/.local/
+/.local/*
+!/.local/narb/
+!/.local/bin
+!/.local/share
+/.local/share/*
+!/.local/share/applications
+
+!/template/
+
+# Specific files
+!/readme.md
+
+
+# Ignore back again
+# Files
+/.config/wall.jpg
+/.config/zshnameddirs
+/.config/git/user
+/.config/ranger/shortcut.conf
+/.config/shortcutrc
+/.config/nvim/.netrwhist
+/.Xauthority
+/.xsession-errors
+/.viminfo
+# Folders
+/.config/naver-whale
+/.config/Caprine
+/.config/Joplin
+/.config/Nextcloud
+/.config/configstore
+/.config/joplin-desktop
+/.config/ibus
+/.config/pulse
+/.config/nvim/autoload
+/.config/nvim/plugged
