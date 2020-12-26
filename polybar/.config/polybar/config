@@ -199,11 +199,12 @@ full-at = 99
 format-charging = <ramp-capacity> <label-charging>
 format-charging-underline = #ffb52a
 
-format-discharging = <ramp-capacity> <label-discharging>
+; format-discharging = <ramp-capacity> <label-discharging>
+format-discharging = %{A1:nnotify batw:}%{A3:$TERMINAL -n floater -e sudo powertop:}<ramp-capacity> <label-discharging>%{A}%{A}
 format-discharging-underline = ${self.format-charging-underline}
-label-discharging = %{A1:nnotify batw:}%{A3:$TERMINAL -n floater -e sudo powertop:}%percentage%%%{A}%{A}
+label-discharging = %percentage%%
 
-format-full =  100%
+format-full = %{A1:nnotify batw:}%{A3:$TERMINAL -n floater -e sudo powertop:} 100%%{A}%{A}
 # format-full-prefix = " "
 # format-full-prefix-foreground = ${colors.foreground-alt}
 format-full-underline = ${self.format-charging-underline}
