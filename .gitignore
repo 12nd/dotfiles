@@ -35,9 +35,13 @@
 /.config/ranger/shortcut.conf
 /.config/shortcutrc
 /.config/nvim/.netrwhist
+/.config/QtProject.conf
 /.Xauthority
 /.xsession-errors
 /.viminfo
+/.config/gtk-3.0/servers
+.npmrc
+.xoutput
 # Folders
 /.config/naver-whale
 /.config/Caprine
@@ -49,3 +53,10 @@
 /.config/pulse
 /.config/nvim/autoload
 /.config/nvim/plugged
+/.config/discord
+/.config/bottom
+/.config/caffeine
+/.config/dconf
+/.config/deepin
+/.config/keepassxc
+/.config/neofetch
