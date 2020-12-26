@@ -1,10 +1,9 @@
-[user]
-	email = ho.james142@gmail.com
-	name = James Ho
 [alias]
 	c = commit
 	p = push
 	s = status
+	su = status --untracked-files=normal
+	sua = status -u
 	rv = remote -v
 	a = add
 	aa = add .
@@ -13,5 +12,10 @@
 	cm = commit -m
 	d = diff
 	cob = checkout -b
+	l = log
+	tree = log --graph --oneline --all
 [include]
 	path = ~/.config/git/user
+[user]
+	name = James Ho
+	email = ho.james142@gmail.com

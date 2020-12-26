@@ -26,7 +26,6 @@ call plug#begin('~/.config/nvim/plugged')
 
 " Colour scheme
 Plug 'danilo-augusto/vim-afterglow'
-Plug 'dylanaraps/wal.vim'
 
 " Some core things we want
 Plug 'tpope/vim-commentary' " Commenting ('gcc')
@@ -37,12 +36,14 @@ Plug 'tpope/vim-sleuth' " Indent autodetect
 Plug 'itchyny/lightline.vim' " A light statusline
 Plug 'junegunn/goyo.vim' " Nice centre thing
 Plug 'ctrlpvim/ctrlp.vim' " Use ctrl+p for fuzzy files
+Plug 'scrooloose/nerdtree' " File browsing
+"Plug 'unblevable/quick-scope' " 420 noscope (press f)
 
 " More heavy, IDE-like stuff
-" Autocompltion + snippets (coc) - run the following:
+" Autocompletion + snippets (coc) - run the following:
 "     - :CocInstall coc-python coc-bibtex coc-texlab coc-ultisnips
-" Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-" Plug 'honza/vim-snippets' " The actual snippets
+"Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+"Plug 'honza/vim-snippets' " The actual snippets
 
 
 " Syntax stuff
@@ -58,7 +59,7 @@ call plug#end()
 "  Let's go!
 "  ---------------------
 "  Basics
-let mapleader=";"
+let mapleader="\\"
 
 set nocompatible
 filetype plugin on
@@ -68,18 +69,24 @@ set number relativenumber
 
 set nohlsearch
 set splitbelow splitright " why isn't this the default?
+set scrolloff=6
 
+"   Colour scheme
+"   Always patch our overrides on scheme load
+"   https://github.com/junegunn/goyo.vim/issues/84#issuecomment-156299446
+function! s:transparent_bg_force()
+  hi! Normal ctermbg=NONE guibg=NONE
+  hi! LineNr ctermbg=NONE guibg=NONE
+  hi! StatusLine ctermbg=NONE ctermfg=DarkCyan cterm=NONE
+endfunction
+autocmd! ColorScheme afterglow call s:transparent_bg_force()
 colorscheme afterglow
-" colorscheme wal
 
 
 "  Tabs - 4 wide
 set tabstop=4
 set softtabstop=0 noexpandtab
 set shiftwidth=4
-
-"  Centre cursor
-set scrolloff=8
 
 "  Mouse - dont kill me pls
 set mouse=a
@@ -96,16 +103,11 @@ autocmd BufWritePost *Xresources,*Xdefaults !xrdb -merge %
 set laststatus=2
 let g:lightline = { 'colorscheme': 'jellybeans', }
 
-" vimtex
+"  nerdtree
+map <leader>n :NERDTreeToggle<CR>
+
+"  use vimtex latex
 let g:tex_flavor = 'latex'
-
-"  coc.nvim
-"  Tab/S-Tab for completion
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
-
 
 " ----------------------
 "  Bindings
@@ -113,9 +115,9 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 map <leader>f :Goyo \| set linebreak<CR>
 
 " Jump to a placeholder character
-map <leader><leader> <Esc>/<++><Enter>"_c4l
-nnoremap <leader><leader> <Esc>/<++><Enter>"_c4l
-inoremap <leader><leader> <Esc>/<++><Enter>"_c4l
+map <leader><leader> <Esc>/<++><Enter>"_d4lzzi
+nnoremap <leader><leader> <Esc>/<++><Enter>"_d4lzzi
+inoremap <leader><leader> <Esc>/<++><Enter>"_d4lzzi
 
 "  Splits
 map <C-h> <C-w>h
@@ -125,9 +127,9 @@ map <C-l> <C-w>l
 
 "  System clipboard management
 "  Copy + paste
-vnoremap <C-c> "+y
-vnoremap <C-x> "*y
-map <C-v> "+P
+vnoremap <leader>c "+y
+vnoremap <leader>x "*y
+map <leader>v "+P
 
 "  Paste mode
 set pastetoggle=<F12>
@@ -148,12 +150,6 @@ autocmd BufRead,BufNewFile *.tex set filetype=tex
 
 "  LaTeX
 autocmd FileType tex nnoremap <F5> :w<Enter>:!latexmk<space>-pdf<space><c-r>%<Enter>
-autocmd FileType tex nnoremap <F4> :w<Enter>:!latexmk<space>-xelatex<space><c-r>%<Enter>
+autocmd FileType tex nnoremap <S-F5> :w<Enter>:!latexmk<space>-xelatex<space><c-r>%<Enter>
+autocmd FileType tex nnoremap <F4> :w<Enter>:!texliveonfly<space>--terminal_only<space>-c<space>latexmk<space>-a<space>'-pdf'<space>%<Enter>
 autocmd FileType tex nnoremap <F6> :!$READER<space>%:r.pdf<space>&<CR><CR>
-
-
-" --------------------
-" Colour scheme transparency at the end!
-hi! Normal ctermbg=NONE guibg=NONE
-hi! LineNr ctermbg=NONE guibg=NONE
-hi! StatusLine ctermbg=NONE ctermfg=DarkCyan cterm=NONE

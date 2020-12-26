@@ -9,32 +9,52 @@ alias q="exit"
 alias cl="clear"
 
 
-# Sudo hacks
-alias sudo="sudo "
-alias sudoo="sudo -E "
-
-
 # Some neat general util stuff
+alias cp='cp -iv'
+alias mv='mv -iv'
 alias ls='ls --color=auto --group-directories-first'
+alias lss='ls -shN'
 alias grep="grep --color=auto"
 alias diff="diff --color=auto"
 alias ccat="highlight --out-format=ansi"
+alias ssh='TERM=xterm-256color ssh'
 
+# dotfiles management
+alias d="git --git-dir=$HOME/.dotfiles.git --work-tree=$HOME"
 
 # Shortcuts for program + option
 # General
 alias v="nvim"
+alias vi="nvim"
+alias vim="nvim"
 alias e="$FILE"
+alias r="ranger"
+alias l="lf"
 alias g="git"
+alias o="xdg-open"
+alias psg="ps aux | grep"
+alias mem="ps axch -o cmd:15,%mem --sort=-%mem | sed 10q"
+alias cpu="ps axch -o cmd:15,%cpu --sort=-%cpu | sed 10q"
 alias sdn="shutdown now"
 alias reb="reboot"
 alias mkp="mkdir -p"
-alias lsa="ls -a"
-alias lsl="ls -l"
-alias lsla="ls -la"
+alias sudo="sudo "
+alias sudoo="sudo -E "
+alias dr="dragon-drag-and-drop -x"
 alias rcp="rsync -vzrh --times --stats --progress --itemize-changes"
-# Open term in same dir (can't use PID as using daemon)
-alias termdir="(st)"
+alias usbgl="sudo usbguard list-devices -b"
+alias usbga="sudo usbguard allow-device"
+
+jg() {
+	jumptool generate && echo "Generated new jump aliases."
+	. $HOME/.config/shortcutrc && echo "Reloaded shell shortcut aliases."
+	ps -p $$ 2>/dev/null | grep -q zsh && source $HOME/.config/zshnameddirs && echo "Reloaded zsh named dirs."
+}
+
+# lf with cd
+[ -f "$HOME/.config/lf/lfcd" ] && . "$HOME/.config/lf/lfcd" && alias lf="lfcd"
+# ranger_cd
+[ -f "$HOME/.config/ranger/shell_automatic_cd.sh" ] && . "$HOME/.config/ranger/shell_automatic_cd.sh" && alias ranger="ranger_cd"
 
 # Package manager (pacman)
 alias p="sudo pacman"
@@ -50,7 +70,7 @@ alias yU="yay -Syu"
 
 # Service management
 alias s="systemctl"
-alias ss="sudo systemctl"
+#alias ss="sudo systemctl"
 alias sst="systemctl status"
 alias ssr="sudo systemctl restart"
 alias sus="systemctl --user status"
@@ -66,34 +86,51 @@ alias ltc="latexmk -c"
 alias wscan="nmcli device wifi rescan"
 
 
-# Config files / directories quick edit/search
-alias cds="cd ~/Dropbox/2020/SEM2"
-alias cdf="cd ~/.dotfiles"
-alias cfv="$EDITOR ~/.config/nvim/init.vim"
-alias cfb="$EDITOR ~/.bashrc"
-alias cfz="$EDITOR ~/.config/zsh/.zshrc"
-alias cfp="$EDITOR ~/.profile"
-alias cfa="$EDITOR ~/.config/aliasrc"
-alias cfi="$EDITOR ~/.config/i3/config"
-alias cfo="$EDITOR ~/.config/polybar/config"
-alias cfs="$EDITOR ~/.config/sxhkd/sxhkdrc"
-alias cfc="$EDITOR ~/.config/picom.conf"
-alias cflf="$EDITOR ~/.config/lf/lfrc"
-alias cfx="$EDITOR ~/.xprofile"
-alias cfxr="$EDITOR ~/.config/X11/Xresources"
-
 # Template copier thing
 # Copy a template and edit it.
 templateEdit() {
-	[ ! -f "$2" ] && cp "$HOME/Templates/$1" "$2"
+	[ ! -f "$2" ] && cp "$HOME/template/$1" "$2"
 	$EDITOR "$2"
 }
-alias thw="templateEdit mathhw.tex"
-alias txm="templateEdit math.tex"
+alias txa="templateEdit assignment.tex"
+alias txt="templateEdit tutorial.tex"
+alias txT="templateEdit tutorial.md"
+alias txg="templateEdit general.tex"
 
 # Fuzzy find file -> vim
 vf() { fzf | xargs -r -I % $EDITOR % ;}
+# vf for scripts dir (subshell so no cd switch)
+vfs() { ( cd $HOME/.scripts && vf ) ;}
+# jumptool listings
+cdj() { d="$(jumptool dir fzf)" && cd "$d" ;}
+vfc() { jumptool config fzf ;}
 
+
+# Host-based include
+[ -f "$NARB_OVERRIDES/aliasrc.$NARB_HOST" ] && . "$NARB_OVERRIDES/aliasrc.$NARB_HOST"
+[ -f "$HOME/.config/shortcutrc" ] && . "$HOME/.config/shortcutrc"
+
+
+
+# Other bloat stuff :)
 # z util
 _Z_DATA=$HOME/.local/share/z
-[ -r "/usr/share/z/z.sh" ] && source /usr/share/z/z.sh
+[ -r "/usr/share/z/z.sh" ] && . /usr/share/z/z.sh
+
+# wal colors for alacritty
+[ "$TERM" = "alacritty" ] && [ -r "$HOME/.cache/wal/sequences" ] && (cat $HOME/.cache/wal/sequences &)
+
+# tmux ssh rename
+# if [ "$TERM" = "tmux-256color" ] && [ -n "$TMUX" ]; then
+# 	ssh() {
+# 		tmux rename-window "ssh($(echo $* | cut -d . -f 1))"
+# 		command ssh "$@"
+# 		tmux set-window-option automatic-rename "on" 1>/dev/null
+# 	}
+# fi
+
+# pidswallow thing
+if pgrep -fl 'pidswallow -gl' >/dev/null 2>&1; then
+	[ -n "$DISPLAY" ]  && command -v xdo >/dev/null 2>&1 && xdo id > /tmp/term-wid-"$$"
+	trap "( rm -f /tmp/term-wid-"$$" )" EXIT HUP
+fi
