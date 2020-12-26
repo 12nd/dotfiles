@@ -1,0 +1,6 @@
+#!/bin/sh
+
+[ ! -z "$WLAN_IFACE" ] && WLAN_IFACE="wlp3s0"
+ip="$(ip a s dev "$WLAN_IFACE" | awk '/inet / { print $2 }' | sed 's/\/.*//')"
+[ "$2" = "notify" ] && notify-send "IP address ($1)" "$ip"
+echo "$ip"

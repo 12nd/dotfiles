@@ -1,0 +1,24 @@
+#!/bin/sh
+
+# corona download update stats for bar...
+
+# click action
+case "$1" in
+	show) curl -s "https://corona-stats.online" | less -r && exit ;;
+	showau) curl -s "https://corona-stats.online/AU?source=1" | less -r && exit ;;
+	*)
+		case "$BLOCK_BUTTON" in
+			1) termfloat $0 show ;;
+			2) $BROWSER "https://www.dhhs.vic.gov.au/victorian-coronavirus-covid-19-data" && exit ;;
+			3) $BROWSER "https://www.dhhs.vic.gov.au/victorian-coronavirus-covid-19-data" && exit ;;
+		esac
+		;;
+esac
+
+# if file too old or doesnt exist (6hr)
+dl() { curl -s "https://www.dhhs.vic.gov.au/victorian-coronavirus-covid-19-data" | grep -A50 'lvn-body' > "$HOME/.cache/corona-stats" ;}
+test $(find "$HOME/.cache/corona-stats" -mmin +360 2>/dev/null) && rm "$HOME/.cache/corona-stats"
+[ ! -s "$HOME/.cache/corona-stats" ] && dl
+
+grab() { grep -B1 "$1" "$HOME/.cache/corona-stats" | sed 1q | tr -d '[:blank:],' | sed 's/<\/h4>//;s/<h4>//'; }
+echo "$(grab 'total cases')(+$(grab 'new cases<br>(last')),$(grab 'total lives lost')(+$(grab 'lives lost<br>(last'))"

@@ -1,0 +1,84 @@
+#!/bin/sh
+
+confs="\
+r	ranger	$HOME/.config/ranger/rc.conf
+w	bspwm	$HOME/.config/bspwm/bspwmrc
+v	neovim	$HOME/.config/nvim/init.vim
+b	bash	$HOME/.bashrc
+z	zsh	$HOME/.config/zsh/.zshrc
+xr	xresources	$HOME/.config/X11/Xresources
+x	xprofile	$HOME/.xprofile
+p	profile	$HOME/.profile
+o	polybar	$HOME/.config/polybar/config
+s	sxhkd	$HOME/.config/sxhkd/sxhkdrc
+sb	sxhkd.bspwm	$HOME/.config/sxhkd/sxhkdrc.bspwm
+c	picom	$HOME/.config/picom.conf
+a	aliasrc	$HOME/.config/aliasrc
+i	i3	$HOME/.config/i3/config
+I	inputrc	$HOME/.config/inputrc
+l	lf	$HOME/.config/lf/lfrc
+f	fontconfig	$HOME/.config/fontconfig/fonts.conf
+d	dunst	$HOME/.config/dunst/dunstrc
+t	tmux	$HOME/.tmux.conf
+A	aliasrc-override	$NARB_OVERRIDES/aliasrc.$NARB_HOST
+P	profile-override	$NARB_OVERRIDES/profile.$NARB_HOST
+X	xprofile-override	$NARB_OVERRIDES/xprofile.$NARB_HOST
+J	jumptool	$HOME/.scripts/tools/jumptool
+Jc	confs-override	$NARB_OVERRIDES/confs.$NARB_HOST
+Jd	dirs-override	$NARB_OVERRIDES/dirs.$NARB_HOST"
+
+dirs="\
+c	cloud	$HOME/cloud
+d	dev	$HOME/dev
+D	downloads	$HOME/downloads
+u	uni	$HOME/uni
+C	config	$HOME/.config
+S	scripts	$HOME/.scripts
+St	tools	$HOME/.scripts/tools
+Sb	bar	$HOME/.scripts/bar
+Sp	personal	$HOME/.scripts/personal
+t	template	$HOME/template
+N	narb	$HOME/.local/narb
+H	overrides	$NARB_OVERRIDES"
+
+[ -f "$NARB_OVERRIDES/confs.$NARB_HOST" ] && confs="$confs\n$(cat $NARB_OVERRIDES/confs.$NARB_HOST)"
+[ -f "$NARB_OVERRIDES/dirs.$NARB_HOST" ] && dirs="$dirs\n$(cat $NARB_OVERRIDES/dirs.$NARB_HOST)"
+
+sel="$2"
+selector() {
+	if [ "$sel" = "fzf" ]; then
+		choice="$(echo "$1" | cut -d'	' -f 2 | fzf --prompt="$2: ")" || exit 1
+	else
+		choice="$(echo "$1" | cut -d'	' -f 2 | dmenu -i -p "$2")" || exit 1
+	fi
+	echo "$1" | awk -F'	' '$2 == "'"$choice"'" { print $3; exit; }'
+}
+
+case "$1" in
+	generate)
+		# term generate alias
+		: > $HOME/.config/shortcutrc
+		echo "$confs" | awk -F'	' '{ print "alias cf" $1 "=\"" "$EDITOR " $3 "\"" }' >> $HOME/.config/shortcutrc
+		echo "$dirs" | awk -F'	' '{ print "alias cd" $1 "=\"" "cd " $3 "\"" }' >> $HOME/.config/shortcutrc
+		# ranger jumps
+		: > $HOME/.config/ranger/shortcut.conf
+		echo "$confs" | awk -F'	' '{ print "map C" $1 " cd " $3 }' >> $HOME/.config/ranger/shortcut.conf
+		echo "$dirs" | awk -F'	' '{ print "map g" $1 " cd " $3 }' >> $HOME/.config/ranger/shortcut.conf
+		# zsh named dirs
+		echo "$dirs" | awk -F'	' '{ print "hash -d " $2 "=" $3 }' > $HOME/.config/zshnameddirs
+		;;
+	config)
+		# pick config
+		conf="$(selector "$confs" "edit config?")"
+		{ [ "$sel" = "fzf" ] && $EDITOR "$conf" || setsid $TERMINAL -e $EDITOR "$conf" ;}
+		;;
+	dir)
+		# pick dir
+		dir="$(selector "$dirs" "jump to?")"
+		[ -d "$dir" ] && cd "$dir" && \
+			{ [ "$sel" = "fzf" ] && echo "$dir" || setsid $TERMINAL ;}
+		;;
+	*)
+		exit 1
+		;;
+esac
