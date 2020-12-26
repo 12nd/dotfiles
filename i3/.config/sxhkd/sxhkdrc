@@ -1,150 +1,110 @@
-# nick's sxhkd config
+# nick's sxhkd config: WM independent
 
-# ---------------------------
-# i3 specific binds
-# ---------------------------
-# (yeah i know im using sxhkd for i3 lol.)
-super + shift + q
-	i3-msg kill
-super + f
-	i3-msg fullscreen toggle
+# reload sxhkd
+super + F12
+	pkill -USR1 -x sxhkd && notify-send "sxhkd" "Reloaded sxhkd bindings."
+# super + shift + F12 is relaunching the wm itself, handled in it
 
-# USE i3-ws (enzime tool) for multimon!
-# basic workspace management
-{_,shift + }super + {h,j,k,l}
-	i3-msg {focus,move} {left,down,up,right}
+# hard force quit
+super + shift + alt + q
+	kill -9 `xdotool getwindowfocus getwindowpid`
 
-super + s
-	i3-msg split toggle
-super + {semicolon,apostrophe}
-	i3-msg split {h,v}
-super + alt + {h,j,k,l}
-	i3resize {left,down,up,right}
-
-# window modes
-super + {alt,shift,control} + t
-	i3-msg layout {default,tabbed,stacking}
-super + shift + space
-	i3-msg floating toggle
-# focuses between tiles/floats
-super + control + space
-	i3-msg focus mode_toggle
-
-# workspace moves on THIS display / control moves to outputs
-{_,shift + ,shift + control + ,control + }super + {1-9,0}
-	i3-ws {--ws ,--ws --shift ,--shift ,_}{1-9,10}
-# move and switch
-super + alt + {1-9,0}
-	i3wsmoveswitch {1-9,10}
-# move monitor relative
-super + shift + control + {h,l}
-	i3-ws --shift {prev,next}
-super + control + {h,l}
-	i3-ws {prev,next}
-super + Tab
-	i3-msg workspace back_and_forth
-
-# reload
-super + shift + r
-	i3-msg reload
-super + control + r
-	i3-msg restart
-
-# misc
-# term spawn float for convenience
-super + control + Return
-	$TERMINAL -n floater
-super + u
-	i3-msg scratchpad show
-# scratchpad tmux if ded
-super + control + u
-	$TERMINAL -n quickterm -e tmux
 # lock
 super + Delete
-	xidlehook-client --socket $HOME/.config/xidlehook.lock control --action Trigger --timer 1
-	#light-locker-command -l
-	#betterlockscreen -l dimblur
-# .desktop launches
-super + y
-	i3-dmenu-desktop --dmenu='rofi -dmenu -i'
+	xscreensaver-command -lock
 
+# reload polybar
+super + F11
+	$HOME/.config/polybar/launch.sh
 
-
-# ---------------------------
-# generic binds
-# ---------------------------
-
-# General bindings
+# programs
 super + Return
 	$TERMINAL
+super + shift + Return
+	termdir
 super + e
-	$TERMINAL -e lf
+	$TERMINAL -e $FILE
 super + shift + e
 	sdmenu
+super + control + e
+	nautilus
 super + space
-	rofi -show run
+	dmenu_run
 super + alt + space
-	rofi -show window
+	j4-dmenu-desktop
 super + w
 	$BROWSER
-# hard force quit
-super + shift + control + q
-	kill -9 `xdotool getwindowfocus getwindowpid`
 super + a
 	pavucontrol
 super + p
 	keepassxc
 super + shift + p
-	$TERMINAL -n floater -e htop
+	termfloat btm --battery
 super + control + p
-	$TERMINAL -n floater -e sudo powertop
+	termfloat sudo powertop
+super + alt + p
+	termfloat bashtop
 super + shift + a
-	$TERMINAL -n floater -e pulsemixer
+	termfloat pulsemixer
 super + shift + n
-	notekit
+	joplin-desktop
+super + control + n
+	p3x-onenote
 super + n
-	$TERMINAL -n floater -e ncmpcpp
+	termfloat ncmpcpp
 super + {control,alt} + n
 	mpdshuffle{_, stop}
-super + m
-	$TERMINAL -e neomutt
+#super + shift + u
+#	usbguardmenu
+super + shift + m
+	thunderbird
+	#$TERMINAL -e neomutt
 super + c
 	caprine
 	#$TERMINAL -e bc -l
 super + shift + c
 	gnome-calculator
 super + control + c
-	$TERMINAL -n floater -e octave
+	termfloat octave
 super + shift + o
+	libreoffice
+super + control + o
 	obs
-super + b
-	barrier
 super + d
 	discord
 super + shift + d
 	displayselect
-super + r
-	peek
+super + control + r
+	deepin-screen-recorder
 # compositor transparency on any program
-super + t 
-	transset-df -m 0.95 -a
+super + t
+	transset-df -m 0.87 -a
 # mail
 super + F8
 	notify-send "sxhkd (mail)" "Syncing mail..." && mailsync
 
-# Reload sxhkd
-super + Escape
-	pkill -USR1 -x sxhkd && notify-send "sxhkd" "Reloaded sxhkd bindings."
+super + F2
+	jumptool config
+super + shift + F2
+	jumptool dir
+super + F3
+	launchpersonal
 
 # System hotkeys
 {_,shift + ,super + }XF86MonBrightness{Down,Up}
 	xbacklight {-dec 10,-dec 2,-set 0,-inc 10,-inc 2,-set 100}
 {_,shift + }XF86Audio{LowerVolume,RaiseVolume}
-	pactl set-sink-volume @DEFAULT_SINK@ {-5%,-1%,+5%,+1%}
+	pactl set-sink-volume @DEFAULT_SINK@ {-5%,-1%,+5%,+1%}; kill -43 $(pidof dwmblocks)
 XF86AudioMute
-	pactl set-sink-mute @DEFAULT_SINK@ toggle
+	pactl set-sink-mute @DEFAULT_SINK@ toggle; kill -43 $(pidof dwmblocks)
 XF86AudioMicMute
-	pactl set-source-mute 1 toggle
+	pactl set-source-mute @DEFAULT_SOURCE@ toggle; kill -43 $(pidof dwmblocks)
+XF86Display
+	displayselect
+XF86ScreenSaver
+	xscreensaver-command -lock
+XF86TouchpadToggle
+	touchpadtoggle
 
 # Script menus
 super + {shift,control} + m
@@ -156,7 +116,7 @@ super + {shift,control,alt} + s
 super + alt + shift + s
 	screenshot rect nosave
 super + control + shift + s
-	flameshot gui
+	deepin-screenshot
 
 
 # Music controls
