@@ -36,6 +36,7 @@
 /.config/shortcutrc
 /.config/nvim/.netrwhist
 /.config/QtProject.conf
+/.config/pavucontrol.ini
 /.Xauthority
 /.xsession-errors
 /.viminfo
