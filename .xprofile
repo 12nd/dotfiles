@@ -45,7 +45,8 @@ ibus-daemon -drx
 # Keep from sleeping tool
 caffeine &
 # Screensaver app
-xscreensaver -no-splash &
+# xscreensaver -no-splash &
+xidledimlock &
 # Subscribe to systemd events to start lock
 #xss-lock -- xscreensaver-command -lock &
 

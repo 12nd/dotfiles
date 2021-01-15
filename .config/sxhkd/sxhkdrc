@@ -11,7 +11,8 @@ super + shift + alt + q
 
 # lock
 super + Delete
-	xscreensaver-command -lock
+	# xscreensaver-command -lock
+	betterlockscreen -l dim
 
 # reload polybar
 super + F11
@@ -102,7 +103,8 @@ XF86AudioMicMute
 XF86Display
 	displayselect
 XF86ScreenSaver
-	xscreensaver-command -lock
+	# xscreensaver-command -lock
+	betterlockscreen -l dim
 XF86TouchpadToggle
 	touchpadtoggle
 
