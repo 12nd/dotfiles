@@ -80,7 +80,7 @@ bindsym $mod+semicolon split h
 # split in vertical orientation
 bindsym $mod+apostrophe split v
 
-bindsym $mod+y	layout split
+bindsym $mod+y	layout splith
 bindsym $mod+Shift+t	layout tabbed
 bindsym $mod+Ctrl+t	layout stacking
 
