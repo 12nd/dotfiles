@@ -118,7 +118,7 @@ super + {shift,control,alt} + s
 super + alt + shift + s
 	screenshot rect nosave
 super + control + shift + s
-	deepin-screenshot
+	deepin-screen-recorder -s $HOME/screenshots
 
 
 # Music controls
