@@ -102,7 +102,7 @@ A,dashbinsh,on,links sh to dash to speed up shell scripts.,
 ,redshift,on,might help your eyes out at night.,
 ,xscreensaver,off,is the screensaver.,
 A,betterlockscreen-git,on,is a lock screen.,
-A,xidlehook,on,is a inactivity timer.
+A,xidlehook,on,is a inactivity timer.,
 ,gnome-keyring,on,is a secret manager daemon.,
 ,seahorse,off,is a GUI for gnome-keyring.,
 A,texlive-installer,off,is the LaTeX installer.,
