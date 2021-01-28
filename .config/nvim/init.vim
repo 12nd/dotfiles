@@ -59,7 +59,7 @@ call plug#end()
 "  Let's go!
 "  ---------------------
 "  Basics
-let mapleader="\\"
+let mapleader=";;"
 
 set nocompatible
 filetype plugin on
