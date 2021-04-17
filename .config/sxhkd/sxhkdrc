@@ -38,7 +38,7 @@ super + w
 super + a
 	pavucontrol
 super + p
-	keepassxc
+	env QT_SCALE_FACTOR=1.01 keepassxc
 super + shift + p
 	termfloat btm --battery
 super + control + p
