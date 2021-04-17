@@ -8,5 +8,5 @@ xidlehook \
 		'xbacklight -get > $HOME/.cache/currbacklight; xbacklight -set 1' \
 		'xbacklight -set "$(cat $HOME/.cache/currbacklight)"' \
 	--timer 30 \
-		'xbacklight -set "$(cat $HOME/.cache/currbacklight)"; betterlockscreen -l dim' \
+		'xbacklight -set "$(cat $HOME/.cache/currbacklight)"; systemctl suspend' \
 		''
