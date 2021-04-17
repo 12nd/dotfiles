@@ -148,3 +148,6 @@ bindkey -M vicmd 'j' history-substring-search-down
 # Instead just use a nice bold
 HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND=bold
 HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND=fg=red,bold
+
+# Set up Node Version Manager
+# source /usr/share/nvm/init-nvm.sh
