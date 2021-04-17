@@ -77,6 +77,8 @@ alias sus="systemctl --user status"
 alias sur="systemctl --user restart"
 
 # (La)TeX
+# texlive-core tlmgr fix
+alias tlmgr="/usr/share/texmf-dist/scripts/texlive/tlmgr.pl --usermode"
 alias tli="sudo tlmgr install"
 alias ltp="latexmk -pdf"
 alias ltc="latexmk -c"
