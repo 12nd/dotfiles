@@ -15,8 +15,8 @@ super + Delete
 	betterlockscreen -l dim
 
 # reload polybar
-super + F11
-	$HOME/.config/polybar/launch.sh
+# super + F11
+# 	$HOME/.config/polybar/launch.sh
 
 # programs
 super + Return
