@@ -49,6 +49,7 @@ caffeine &
 xidledimlock &
 # Subscribe to systemd events to start lock
 #xss-lock -- xscreensaver-command -lock &
+seafile-applet &
 
 
 # Host-based include
