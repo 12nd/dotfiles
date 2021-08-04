@@ -11,8 +11,9 @@ show_marks = "none"
 
 [[block]]
 block = "disk_space"
-path = "/"
+path = "/home"
 info_type = "available"
+on_click = "nnotify disk /home"
 unit = "GB"
 interval = 60
 warning = 20.0
@@ -28,12 +29,14 @@ device_format = "{icon}{ap}"
 [[block]]
 block = "sound"
 format = "{volume}"
-max_vol = 0
-show_volume_when_muted = false
+on_click = "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+max_vol = 100
+show_volume_when_muted = true
 
 [[block]]
 block = "battery"
 driver = "upower"
+on_click = "nnotify batw"
 format = "{percentage} {time}"
 
 [[block]]
