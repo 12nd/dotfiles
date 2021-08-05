@@ -29,7 +29,6 @@ device_format = "{icon}{ap}"
 [[block]]
 block = "sound"
 format = "{volume}"
-on_click = "pactl set-sink-mute @DEFAULT_SINK@ toggle"
 max_vol = 100
 show_volume_when_muted = true
 
