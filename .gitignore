@@ -41,14 +41,18 @@
 /.xsession-errors
 /.viminfo
 /.config/gtk-3.0/servers
+/.config/zoomus.conf
 .npmrc
 .xoutput
+.octave_hist
+
 # Folders
 /.config/naver-whale
 /.config/Caprine
 /.config/Joplin
 /.config/Nextcloud
 /.config/configstore
+/.config/@joplin
 /.config/joplin-desktop
 /.config/ibus
 /.config/pulse
@@ -61,3 +65,6 @@
 /.config/deepin
 /.config/keepassxc
 /.config/neofetch
+/.config/Signal
+/.config/marktext
+/.config/libreoffice
