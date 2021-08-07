@@ -38,7 +38,7 @@ for_window [workspace=".*-f$"] floating enable
 # start bar
 #exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 bar {
-    font pango:Fantasque Sans Mono, Symbols Nerd Font, WenQuanYi Micro Hei Mono, NanumGothicCoding, Noto Sans CJK JP 10
+    font pango:mono 10
     position top
     status_command i3status-rs $HOME/.config/i3status-rust/config.toml
     strip_workspace_numbers yes
