@@ -1,11 +1,11 @@
 #!/bin/sh
 
-[ -z "$TOUCHPAD_NAME" ] && exit
+TOUCHPAD_NAME="SynPS/2 Synaptics TouchPad"
 
 if [ "$1" = "off" ] || xinput list-props "$TOUCHPAD_NAME" | grep -q "Device Enabled.*1$"; then
 	xinput disable "$TOUCHPAD_NAME"
-	[ "$2" != "silent" ] && notify-send "touchpadtoggle" "Disabled $TOUCHPAD_NAME."
+	[ "$2" != "silent" ] && notify-send "touchpadtoggle ﳶ" "Disabled $TOUCHPAD_NAME."
 else
 	xinput enable "$TOUCHPAD_NAME"
-	[ "$2" != "silent" ] && notify-send "touchpadtoggle" "Enabled $TOUCHPAD_NAME."
+	[ "$2" != "silent" ] && notify-send "touchpadtoggle ﳶ" "Enabled $TOUCHPAD_NAME."
 fi
