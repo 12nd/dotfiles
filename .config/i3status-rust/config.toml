@@ -21,6 +21,10 @@ alert = 10.0
 format = "{icon}{available}"
 
 [[block]]
+block = "backlight"
+step_width = 1
+
+[[block]]
 block = "networkmanager"
 on_click = "nnotify wlan"
 ap_format = "{ssid^10}"
