@@ -95,7 +95,8 @@ bindsym $mod+semicolon split h
 # split in vertical orientation
 bindsym $mod+apostrophe split v
 
-bindsym $mod+y	layout splith
+bindsym $mod+t	layout splith
+bindsym $mod+$alt+t layout splitv
 bindsym $mod+Shift+t	layout tabbed
 bindsym $mod+Ctrl+t	layout stacking
 
@@ -168,3 +169,8 @@ mode "$mode_gaps" {
 # Master+stack thingy
 # https://www.reddit.com/r/i3wm/comments/bgwz85/quickly_make_main_stack_and_side_windows_layout/ 
 bindsym $mod+Shift+o layout splitv; move left; resize grow right 10 px or 10 ppt; split v; layout stacking
+
+
+# Reset workspace
+# https://www.reddit.com/r/i3wm/comments/8c6yfy/how_to_reset_a_workspace_move_all_nodes_to_root/
+bindsym $mod+o [tiling workspace="__focused__"] move workspace "reorder"; [workspace="reorder"] move workspace current
