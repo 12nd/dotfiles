@@ -26,12 +26,10 @@ numlockx & # numlock ON by default
 eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets)
 export SSH_AUTH_SOCK
 
-nextcloud --background &
+seafile-applet &
 
 # Additionals
-killall -q redshift; redshift -l 37.8136:144.9631 -t 6500K:2700K & # f.lux style with melbourne and warms
-[ ! -s $HOME/.config/mpd/pid ] && mpd & # music
-! pgrep -x "mpdscribble" && mpdscribble & # music last.fm
+killall -q redshift; redshift -l -37.8136:144.9631 -t 6500K:2700K & # f.lux style with melbourne and warms
 
 # IBus (zh/kr) ime
 export GTK_IM_MODULE=ibus
@@ -49,7 +47,6 @@ caffeine &
 xidledimlock &
 # Subscribe to systemd events to start lock
 #xss-lock -- xscreensaver-command -lock &
-seafile-applet &
 
 
 # Host-based include
