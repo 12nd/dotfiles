@@ -1,0 +1,9 @@
+#!/bin/sh
+
+if tlp-stat --system | grep -q "Mode.*AC (manual)"; then
+	sudo -A tlp start
+	notify-send "tlpmode " "Set tlp to auto mode"
+else
+	sudo -A tlp ac
+	notify-send "tlpmode 異" "Set tlp to high performance (ac) mode"
+fi
