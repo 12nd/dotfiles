@@ -17,7 +17,7 @@ super + shift + Return
 super + control + Return
 	termfloat
 super + e
-	$TERMINAL -e $FILE
+	$TERMINAL -e $SHELL -i -c $FILE
 super + shift + e
 	sdmenu
 super + control + e
