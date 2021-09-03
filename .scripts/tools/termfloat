@@ -5,7 +5,12 @@ case "$TERMINAL" in
 	urxvt*)
 		$TERMINAL -name floater -e $@ ;;
 	alacritty)
-		$TERMINAL --class=floater -e $SHELL -i -c "$*" ;;
+		if [ "$*" ]
+		then
+			$TERMINAL --class=floater -e $SHELL -i -c "$*"
+		else
+			$TERMINAL --class=floater
+		fi ;;
 	*)
 		$TERMINAL -n floater -g 120x34 -e $@ ;;
 esac
