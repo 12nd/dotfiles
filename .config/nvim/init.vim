@@ -59,7 +59,7 @@ call plug#end()
 "  Let's go!
 "  ---------------------
 "  Basics
-let mapleader="\\"
+let mapleader=","
 
 set nocompatible
 filetype plugin on
@@ -157,7 +157,7 @@ vnoremap <A-k> :m '<-2<CR>gv=gv
 "  Language specific 'Macros'
 
 "  LaTeX
-autocmd FileType tex nnoremap <F5> :w<Enter>:!latexmk<space>-pdf<space><c-r>%<Enter>
+autocmd FileType tex nnoremap <F5> :w<Enter>:!latexmk<space>-pdf<space>-cd<space><c-r>%<Enter>
 autocmd FileType tex nnoremap <S-F5> :w<Enter>:!latexmk<space>-xelatex<space><c-r>%<Enter>
 autocmd FileType tex nnoremap <F4> :w<Enter>:!texliveonfly<space>--terminal_only<space>-c<space>latexmk<space>-a<space>'-pdf'<space>%<Enter>
 autocmd FileType tex nnoremap <F6> :!$READER<space>%:r.pdf<space>&<CR><CR>
