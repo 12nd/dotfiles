@@ -16,7 +16,7 @@ SAVEHIST=1000
 
 # Some misc options
 setopt auto_cd
-setopt share_history
+#setopt share_history
 setopt menu_complete
 setopt cdable_vars
 # Automatically push dirs to stack so we can quickly flip between dirs
