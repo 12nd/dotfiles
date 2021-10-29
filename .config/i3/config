@@ -58,10 +58,9 @@ exec --no-startup-id sxhkd
 
 # ------------ COLORS ----------------
 # set Xresources colors:
-set_from_resource $normal_color color8 #000000
-set_from_resource $focused_color color15 #000000
-set_from_resource $alt_color color2 #000000
-set_from_resource $color4 color4 #000000
+set_from_resource $normal_color color8 #333333
+set_from_resource $focused_color color15 #ffffff
+set_from_resource $alt_color color2 #0088cc
 set_from_resource $color0 color0 #000000
 set $transparent #00000000
 set $alertred #900000
@@ -70,12 +69,12 @@ set $black #000000
 set $white #ffffff
 
 # COLORCLASS            BORDER          BACKGROUND      TEXT    INDICATOR   CHILD_BORDER
-client.focused          $focused_color  $focused_color  $black  $alt_color  $focused_color
-client.unfocused        $normal_color   $normal_color   $black  $alt_color  $normal_color
-client.focused_inactive $normal_color   $normal_color   $black  $alt_color  $normal_color
-client.urgent           $alertred       $red            $white  $alt_color  $alertred
+client.focused          $focused_color  $focused_color  $color0  $alt_color  $focused_color
+client.unfocused        $normal_color   $normal_color   $color0  $alt_color  $normal_color
+client.focused_inactive $normal_color   $normal_color   $color0  $alt_color  $normal_color
+client.urgent           $alertred       $red            $color0  $alt_color  $alertred
 
-client.background       $black
+client.background       $color0
 
 # --------------- i3 BINDINGS --------------
 # i3 Focus/Window mgmt
