@@ -1,27 +1,48 @@
-\documentclass{article}
+\documentclass[12pt]{article}
+%TC:ignore
 
 % ------------------- Preamble --------------------
-\usepackage[a4paper, margin=2cm, top=3cm, bottom=2cm]{geometry} % A4 paper with my standard margins
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper, margin=2.54cm, top=2.54cm, bottom=2.54cm, headheight=15pt]{geometry}
+
+\usepackage[australian]{babel}
+\usepackage{csquotes}
+\usepackage[style=apa6, backend=biber, language=british]{biblatex}
+\DeclareLanguageMapping{australian}{british-apa}
+\addbibresource{./bibliography.bib}
+
+\usepackage[shortlabels]{enumitem}
+\usepackage{booktabs}
 \usepackage{microtype}
 \usepackage{fancyhdr}
-\usepackage[shortlabels]{enumitem}
-\usepackage[parfill]{parskip}
-\usepackage{newpxtext, newpxmath}
-\usepackage{float}
 \usepackage{graphicx}
+\usepackage{float}
+
+\usepackage{newpxtext,newpxmath}
+\usepackage[zerostyle=e]{newtxtt}
+
+\usepackage[T1]{fontenc}
+%\setlength{\parindent}{4em}
+%\setlength{\parskip}{1em}
+%\usepackage{setspace}
+\usepackage{ragged2e}
+\justifying
+
+%\usepackage{url}
+%\setcounter{biburlnumpenalty}{500}
+%\interfootnotelinepenalty=10000
 
 % Document metadata
-\newcommand{\metatitle}{<++>}
-\newcommand{\metasubtitle}{<++>}
-\newcommand{\shorttitle}{<++>}
-\newcommand{\metaauthor}{Tay, Nicholas}
+\newcommand{\metatitle}{<++>} % assignment no
+\newcommand{\metasubtitle}{<++>} % unit code unit name
+\newcommand{\shorttitle}{<++>} % unit code assignment x
+\newcommand{\metaauthor}{Ho, James}
 \newcommand{\metaemail}{<++>}
 \newcommand{\metadate}{<++>}
 
-% Back to more config
-\usepackage[pdfauthor={\metaauthor{} <\metaemail{}>}, pdftitle={\metatitle{}}]{hyperref}
+\usepackage[pdfauthor={\metaauthor{} <\metaemail{}>}, pdftitle={\shorttitle{}}]{hyperref}
 
-% Header settings
+
 \pagestyle{fancy}
 \fancyhf{}
 \lhead{\metaauthor{}}
@@ -29,66 +50,46 @@
 \rhead{\metadate{}}
 \cfoot{\thepage}
 
-% bib
-\usepackage[australian]{babel}
-\usepackage{csquotes}
-\usepackage[style=apa6, backend=biber, language=american]{biblatex}
-\DeclareLanguageMapping{american}{american-apa}
-\addbibresource{./bibliography.bib}
+\usepackage[all]{hypcap}
 
-
+%TC:endignore
 % ------------------- End Preamble --------------------
 
+
 \begin{document}
-% textidote: ignore begin
-\thispagestyle{empty}
-\parbox[b]{0.925\textwidth}{
-\vspace*{8.5cm}
-\begin{flushright}
-    {
-        \huge
-        \textbf{\metatitle} \\[.35cm]
+%TC:ignore
+\begin{titlepage}
+  \raggedleft
+
+  \rule{1pt}{\textheight}
+  \hspace{0.05\textwidth}
+  \parbox[b]{0.75\textwidth}{
+    \vspace{\fill}
+    {\Huge\bfseries \metatitle{}}\\[1cm]
+    {\Large \metasubtitle{}}\\[0.1cm]
+    {\large Semester <++>} \\[1.5cm] % sem, year
+    {\large Monash University \\[0.1cm]Clayton Campus}\\[3cm]
+    {\Large\textsc{\metaauthor} \\[0.1cm]
+    \texttt{<++>} \\[0.1cm] % student ID
+\href{mailto:\metaemail{}}{\textit{\metaemail{}}}} \\[0.5cm]
+    \includegraphics[height=3cm]{monash2.pdf}
+    \hspace*{\fill}
+    \setlength{\fboxsep}{0pt}\fbox{
+      \parbox[b][2.98cm][t]{0.5\textwidth}{
+	\centering \vspace{0.3cm}
+	\textbf{Additional Information} \\
+      }
     }
-
-    {
-        \large
-        \textit{\metasubtitle} \\[1.7cm]
-    }
-
-    Assignment <++> \\ % assignment number: unit
-    Monash University, Clayton Campus \\[.45cm]
-
-    \metaauthor{} \\ % student name
-    \texttt{<++>} \\ % student ID
-    \href{mailto:\metaemail{}}{\texttt{\metaemail{}}} \\[.45cm]
-
-    Semester <++> \\ % semester x, year
-    (<++>)\\[2cm] % (month-month)
-
-    \includegraphics[height=2cm]{monash2.pdf}\\[0.25cm]
-\end{flushright}
-}
-\hspace{0.025\textwidth}
-\rule{0.5pt}{0.8\textheight}
-\begin{center}
-    \vspace*{\fill}
-    \fbox{\parbox{15cm}{
-        \centering
-        \large
-        \textbf{\underline{Additional Information}} \\
-        <++>
-    }}
-    \vspace{1cm}
-\end{center}
-
-\newpage
-% textidote: ignore end
-
+  }
+\end{titlepage}
+%TC:endignore
 
 \section{<++>}
 <++>
 
+%TC:ignore
 \newpage
 \printbibliography
+%TC:endignore
 \end{document}
 
