@@ -13,10 +13,11 @@ elif pgrep -x i3; then
 	exitwm="i3-msg exit"
 fi
 
-case "$(printf "shutdown\\nreboot\\nsuspend\\nrefresh\\nlogout" | dmenu -i -p "time to leave?")" in
+case "$(printf "shutdown\\nreboot\\nsuspend\\nhibernate\\nrefresh\\nlogout" | dmenu -i -p "time to leave?")" in
 	"shutdown") shutdown now ;;
 	"reboot") reboot ;;
 	"suspend") systemctl suspend ;;
+	"hibernate") systemctl hibernate ;;
 	"refresh") `echo $refreshwm` ;;
 	"logout") `echo $exitwm` ;;
 esac
