@@ -40,12 +40,12 @@ bar {
     strip_workspace_numbers yes
     colors {
         separator #666666
-        background #222222
+        background #000000
         statusline #dddddd
         #                   BORDER BACKGROUND TEXT
         focused_workspace $alt_color $alt_color $color0
-        active_workspace #333333 #333333 #ffffff
-        inactive_workspace #333333 #333333 #888888
+        active_workspace $color0 $color0 $focused_color
+        inactive_workspace $color0 $color0 $color1
         urgent_workspace $alertred $red $white
     }
 }
@@ -62,6 +62,7 @@ set_from_resource $normal_color color8 #333333
 set_from_resource $focused_color color15 #ffffff
 set_from_resource $alt_color color2 #0088cc
 set_from_resource $color0 color0 #000000
+set_from_resource $color1 color1 #888888
 set $transparent #00000000
 set $alertred #900000
 set $red #ff0000
