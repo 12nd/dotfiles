@@ -42,14 +42,10 @@ super + shift + a
 	termfloat pulsemixer
 super + shift + n
 	joplin-desktop
-# super + control + n
-# 	p3x-onenote
 super + n
 	termfloat ncmpcpp
 super + {control,alt} + n
 	mpdshuffle{_, stop}
-#super + shift + u
-#	usbguardmenu
 # super + shift + m
 # 	thunderbird
 	#$TERMINAL -e neomutt
@@ -113,6 +109,8 @@ super + alt + shift + s
 	screenshot rect nosave
 super + control + shift + s
 	deepin-screen-recorder -s $HOME/screenshots
+super + shift + u
+	usbguardmenu
 
 
 # Music controls

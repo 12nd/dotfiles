@@ -9,12 +9,6 @@ picom -b & # compositor (compton)
 setwp & # wallpaper
 remapkb & # remap keyboard caps esc thing
 
-# dwm basics
-if [ "$NARB_WM" = "dwm" ]; then
-	sxhkd &
-	dwmblocks &
-fi
-
 # More
 #urxvtd -f & # terminal
 dunst & # notifs

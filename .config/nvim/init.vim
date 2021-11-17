@@ -1,6 +1,6 @@
 "
 " --------------
-" nick's vimrc
+" James' vimrc
 " --------------
 "
 
@@ -29,15 +29,15 @@ Plug 'danilo-augusto/vim-afterglow'
 
 " Some core things we want
 Plug 'tpope/vim-commentary' " Commenting ('gcc')
-Plug 'tpope/vim-surround' " Quoting
+Plug 'machakann/vim-sandwich' " Quoting
 Plug 'tpope/vim-sleuth' " Indent autodetect
 
 " Additional nice things
-Plug 'itchyny/lightline.vim' " A light statusline
+Plug 'nvim-lualine/lualine.nvim'
 Plug 'junegunn/goyo.vim' " Nice centre thing
 Plug 'ctrlpvim/ctrlp.vim' " Use ctrl+p for fuzzy files
 Plug 'scrooloose/nerdtree' " File browsing
-"Plug 'unblevable/quick-scope' " 420 noscope (press f)
+" Plug 'unblevable/quick-scope' " 420 noscope (press f)
 
 " More heavy, IDE-like stuff
 " Autocompletion + snippets (coc) - run the following:
@@ -99,15 +99,25 @@ autocmd BufWritePost *Xresources,*Xdefaults !xrdb -merge %
 " ----------------------
 "  Plugin config
 
-"  lightline
-set laststatus=2
-let g:lightline = { 'colorscheme': 'jellybeans', }
+"  Lua config
+lua << END
+require('lualine').setup{
+  options = {
+    theme = 'jellybeans',
+    section_separators = '',
+    component_separators = '|'
+  }
+}
+END
 
 "  nerdtree
 map <leader>n :NERDTreeToggle<CR>
 
 "  use vimtex latex
 let g:tex_flavor = 'latex'
+
+"  use vimsurround bindings with sandwich
+runtime macros/sandwich/keymap/surround.vim
 
 " ----------------------
 "  Bindings
@@ -124,6 +134,9 @@ map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
+
+"  Yank to end of line (no new line)
+nnoremap Y y$
 
 "  System clipboard management
 "  Copy + paste
@@ -160,4 +173,8 @@ vnoremap <A-k> :m '<-2<CR>gv=gv
 autocmd FileType tex nnoremap <F5> :w<Enter>:!latexmk<space>-pdf<space>-cd<space><c-r>%<Enter>
 autocmd FileType tex nnoremap <S-F5> :w<Enter>:!latexmk<space>-xelatex<space><c-r>%<Enter>
 autocmd FileType tex nnoremap <F4> :w<Enter>:!texliveonfly<space>--terminal_only<space>-c<space>latexmk<space>-a<space>'-pdf'<space>%<Enter>
-autocmd FileType tex nnoremap <F6> :!$READER<space>%:r.pdf<space>&<CR><CR>
+
+"  Markdown
+autocmd FileType markdown nnoremap <F5> :w<CR>:!pandoc<space>-i<space><c-r>%<space>-o<space>%:r.pdf<CR>
+
+autocmd FileType tex,markdown nnoremap <F6> :!$READER<space>%:r.pdf<space>&<CR><CR>

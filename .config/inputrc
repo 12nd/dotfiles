@@ -1,6 +1,5 @@
 $include /etc/inputrc
 set editing-mode vi
-set bell-style none
 
 # tab complete quick
 set show-all-if-ambiguous on

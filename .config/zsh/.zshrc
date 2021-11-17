@@ -1,6 +1,3 @@
-# Nick's .zshrc
-# idk what i'm doing so yeah.
-
 # Setup the prompt (PS1)
 PS1="%F{015}%n%f%F{243}@%f%F{176}%m%f%F{243}:%f%(5~|%-1~/…/%3~|%4~) » "
 
@@ -10,21 +7,21 @@ PS1="%F{015}%n%f%F{243}@%f%F{176}%m%f%F{243}:%f%(5~|%-1~/…/%3~|%4~) » "
 
 # Historys
 HISTFILE="$HOME/.local/share/zsh_history"
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=10000
+SAVEHIST=10000
 
 
 # Some misc options
 setopt auto_cd
+# Don't save command if same as previous
+setopt hist_ignore_dups
 #setopt share_history
-setopt menu_complete
+setopt auto_menu
 setopt cdable_vars
 # Automatically push dirs to stack so we can quickly flip between dirs
 setopt auto_pushd
 # For above, minus should mean reverse (at least to me?)
 setopt pushd_minus
-# Don't auto tab complete fill
-setopt nomenucomplete
 
 
 # Use vim keys
