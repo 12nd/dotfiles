@@ -2,7 +2,7 @@
 name = "semi-native"
 
 [icons]
-name = "material-nf"
+name = "awesome"
 
 [[block]]
 block = "focused_window"
@@ -21,10 +21,6 @@ alert = 10.0
 format = "{icon}{available}"
 
 [[block]]
-block = "backlight"
-step_width = 1
-
-[[block]]
 block = "networkmanager"
 on_click = "nnotify wlan"
 ap_format = "{ssid^10}"
@@ -35,13 +31,6 @@ block = "sound"
 format = "{volume}"
 max_vol = 100
 show_volume_when_muted = true
-
-[[block]]
-block = "battery"
-driver = "upower"
-on_click = "nnotify batw"
-format = "{percentage} {time}"
-full_format = "100% "
 
 [[block]]
 block = "time"
