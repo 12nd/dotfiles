@@ -40,7 +40,7 @@ alias reb="reboot"
 alias mkp="mkdir -p"
 alias sudo="sudo "
 alias sudoo="sudo -E "
-alias dr="dragon-drag-and-drop -x"
+alias dr="dragon-drop -x"
 alias rcp="rsync -vzrh --times --stats --progress --itemize-changes"
 alias usbgl="sudo usbguard list-devices -b"
 alias usbga="sudo usbguard allow-device"
@@ -56,17 +56,12 @@ jg() {
 # ranger_cd
 [ -f "$HOME/.config/ranger/shell_automatic_cd.sh" ] && . "$HOME/.config/ranger/shell_automatic_cd.sh" && alias ranger="ranger_cd"
 
-# Package manager (pacman)
-alias p="sudo pacman"
-alias pS="sudo pacman -S"
-alias pR="sudo pacman -R"
-alias pU="sudo pacman -Syu"
-alias pQ="pacman -Q"
-# yay (AUR)
-alias y="yay"
-alias yS="yay -S"
-alias yR="yay -R"
-alias yU="yay -Syu"
+# Package manager (dnf)
+alias dI="sudo dnf install"
+alias dR="sudo dnf remove"
+alias dU="sudo dnf upgrade"
+alias dS="dnf search"
+alias rQ="rpm -qa"
 
 # Service management
 alias s="systemctl"
@@ -78,7 +73,6 @@ alias sur="systemctl --user restart"
 
 # (La)TeX
 # texlive-core tlmgr fix
-alias tlmgr="/usr/share/texmf-dist/scripts/texlive/tlmgr.pl --usermode"
 alias tli="sudo tlmgr install"
 alias ltp="latexmk -pdf"
 alias ltc="latexmk -c"

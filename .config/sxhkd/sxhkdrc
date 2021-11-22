@@ -33,11 +33,11 @@ super + a
 super + p
 	env QT_SCALE_FACTOR=1.01 keepassxc
 super + shift + p
-	termfloat btm --battery
+	termfloat btm
 super + control + p
 	termfloat sudo powertop
 super + alt + p
-	termfloat bashtop
+	termfloat htop
 super + shift + a
 	termfloat pulsemixer
 super + shift + n
@@ -46,9 +46,8 @@ super + n
 	termfloat ncmpcpp
 super + {control,alt} + n
 	mpdshuffle{_, stop}
-# super + shift + m
-# 	thunderbird
-	#$TERMINAL -e neomutt
+super + m
+	evolution
 super + c
 	caprine
 	#$TERMINAL -e bc -l

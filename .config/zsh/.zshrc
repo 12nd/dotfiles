@@ -133,18 +133,18 @@ ZSH_HIGHLIGHT_STYLES[arg0]=fg=114
 
 # History substring search
 # Must be loaded after the syntax highlighting plugin
-source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh 2>/dev/null
-# Binds
-# Up/down arrows
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
-# vi mode
-bindkey -M vicmd 'k' history-substring-search-up
-bindkey -M vicmd 'j' history-substring-search-down
-# Reset search formatting - magenta bg is too jarring
-# Instead just use a nice bold
-HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND=bold
-HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND=fg=red,bold
+# source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh 2>/dev/null
+# # Binds
+# # Up/down arrows
+# bindkey '^[[A' history-substring-search-up
+# bindkey '^[[B' history-substring-search-down
+# # vi mode
+# bindkey -M vicmd 'k' history-substring-search-up
+# bindkey -M vicmd 'j' history-substring-search-down
+# # Reset search formatting - magenta bg is too jarring
+# # Instead just use a nice bold
+# HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND=bold
+# HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND=fg=red,bold
 
 # Set up Node Version Manager
 # source /usr/share/nvm/init-nvm.sh
