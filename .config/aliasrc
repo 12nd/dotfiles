@@ -29,7 +29,6 @@ alias vi="nvim"
 alias vim="nvim"
 alias e="$FILE"
 alias r="ranger"
-alias l="lf"
 alias g="git"
 alias o="xdg-open"
 alias psg="ps aux | grep"
@@ -51,8 +50,6 @@ jg() {
 	ps -p $$ 2>/dev/null | grep -q zsh && source $HOME/.config/zshnameddirs && echo "Reloaded zsh named dirs."
 }
 
-# lf with cd
-[ -f "$HOME/.config/lf/lfcd" ] && . "$HOME/.config/lf/lfcd" && alias lf="lfcd"
 # ranger_cd
 [ -f "$HOME/.config/ranger/shell_automatic_cd.sh" ] && . "$HOME/.config/ranger/shell_automatic_cd.sh" && alias ranger="ranger_cd"
 

@@ -34,7 +34,7 @@ for_window [instance="quickterm"] move scratchpad
 
 for_window [workspace=".*-f$"] floating enable
 
-# start bar
+# Start bar
 bar {
     font pango:mono 12
     position top
@@ -52,10 +52,15 @@ bar {
     }
 }
 
-# startup the quickterm
-#exec --no-startup-id $TERMINAL -n quickterm -e tmux
-
+# Startup
 exec --no-startup-id sxhkd
+exec --no-startup-id picom -b
+exec --no-startup-id setwp
+exec --no-startup-id remapkb
+
+exec --no-startup-id seafile-applet
+exec --no-startup-id redshift-gtk -l -37.8136:144.9631 -t 6500K:2700K
+exec --no-startup-id ibus-daemon -drx
 
 
 # ------------ COLORS ----------------

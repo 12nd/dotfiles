@@ -36,3 +36,4 @@ application/x-extension-xhtml=firefox.desktop;
 application/x-extension-xht=firefox.desktop;
 video/mp4=mpv.desktop;
 x-scheme-handler/mailto=userapp-Evolution-PZSZC1.desktop;
+application/octet-stream=emacs.desktop;org.xfce.mousepad.desktop;nvim.desktop;

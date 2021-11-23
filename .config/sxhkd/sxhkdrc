@@ -50,7 +50,6 @@ super + m
 	evolution
 super + c
 	caprine
-	#$TERMINAL -e bc -l
 super + shift + c
 	gnome-calculator
 super + control + c
@@ -90,12 +89,6 @@ XF86AudioMicMute
 	pactl set-source-mute @DEFAULT_SOURCE@ toggle
 XF86Display
 	displayselect
-XF86ScreenSaver
-	betterlockscreen -l dim
-XF86TouchpadToggle
-	touchpadtoggle
-XF86Battery
-	tlpmode
 
 # Script menus
 super + {shift,control} + m

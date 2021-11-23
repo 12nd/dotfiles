@@ -1,16 +1,3 @@
-! hidpi settings
-!Xft.dpi: 144
-!Xft.autohint: 0
-!Xft.lcdfilter: lcddefault
-!Xft.hintstyle: hintfull
-!Xft.hinting: 1
-!Xft.antialias: 1
-!Xft.rgba: rgb
-
-! st settings
-St.alpha: 0.95
-
-
 ! Misc XTerm settings just as a fallback term
 XTerm*faceName: xft:mono
 XTerm*faceSize: 12
@@ -28,28 +15,9 @@ XTerm*translations: #override \
 Super <Key> minus: smaller-vt-font() \n\
 Super <Key> plus: larger-vt-font() \n\
 
-! Xscreensaver theme/customise
-! Hide login button
-xscreensaver.newLoginCommand: 
-! Dialog
-xscreensaver.Dialog.foreground: #fefbf3
-xscreensaver.Dialog.background: #303641
-xscreensaver.Dialog.topShadowColor: #303641
-xscreensaver.Dialog.bottomShadowColor: #303641
-!xscreensaver.Dialog.Button.foreground: #fefbf3
-!xscreensaver.Dialog.Button.background: #4b5162
-xscreensaver.Dialog.Button.foreground: #303641
-xscreensaver.Dialog.Button.background: #303641
-! Inputs
-xscreensaver.Dialog.text.foreground: #fefbf3
-xscreensaver.Dialog.text.background: #383e49
-! Other label clears
-xscreensaver.dateFormat:
-xscreensaver.passwd.heading.label:
-xscreensaver.passwd.unlock.label:
-xscreensaver.passwd.body.label:
-
-
+! ---
+! Colors
+! ---
 ! special
 *.foreground:   #ffffff
 *.background:   #000000
@@ -86,4 +54,3 @@ xscreensaver.passwd.body.label:
 ! white
 *.color7:       #d3d7cf
 *.color15:      #eeeeec
-
