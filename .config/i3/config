@@ -53,14 +53,13 @@ bar {
 }
 
 # Startup
-exec --no-startup-id sxhkd
 exec --no-startup-id picom -b
 exec --no-startup-id setwp
 exec --no-startup-id remapkb
 
 exec --no-startup-id seafile-applet
 exec --no-startup-id redshift-gtk -l -37.8136:144.9631 -t 6500K:2700K
-exec --no-startup-id ibus-daemon -drx
+exec --no-startup-id ibus-daemon -drxR
 
 
 # ------------ COLORS ----------------
@@ -178,12 +177,68 @@ mode "$mode_gaps" {
     bindsym Escape mode "default"
 }
 
-
 # Master+stack thingy
 # https://www.reddit.com/r/i3wm/comments/bgwz85/quickly_make_main_stack_and_side_windows_layout/ 
 bindsym $mod+Shift+o layout splitv; move left; resize grow right 10 px or 10 ppt; split v; layout stacking
 
-
 # Reset workspace
 # https://www.reddit.com/r/i3wm/comments/8c6yfy/how_to_reset_a_workspace_move_all_nodes_to_root/
 bindsym $mod+o [tiling workspace="__focused__"] move workspace "reorder"; [workspace="reorder"] move workspace current
+
+# --------------- APP & SYSTEM BINDINGS --------------
+
+# programs
+bindsym $mod+Return exec --no-startup-id $TERMINAL
+bindsym $mod+Shift+Return exec --no-startup-id termdir
+bindsym $mod+Control+Return exec --no-startup-id termfloat
+bindsym $mod+space exec --no-startup-id dmenu_run
+bindsym $mod+$alt+space exec --no-startup-id i3-dmenu-desktop
+
+bindsym $mod+e exec --no-startup-id $TERMINAL -e $SHELL -i -c $FILE
+bindsym $mod+Shift+e exec sdmenu
+bindsym $mod+Control+e exec thunar
+bindsym $mod+w exec $BROWSER
+
+bindsym $mod+p exec keepassxc
+bindsym $mod+Shift+p exec termfloat btm
+bindsym $mod+Control+p exec termfloat sudo powertop
+bindsym $mod+$alt+p exec termfloat htop
+bindsym $mod+Shift+n exec joplin-desktop
+bindsym $mod+m exec evolution
+bindsym $mod+c exec caprine
+bindsym $mod+Shift+c exec gnome-calculator
+bindsym $mod+Control+c exec termfloat octave
+bindsym $mod+Control+o exec obs
+bindsym $mod+d exec discord
+bindsym $mod+Shift+d exec --no-startup-id displayselect
+# compositor transparency on any program
+bindsym $mod+y exec --no-startup-id transset-df -m 0.87 -a
+
+bindsym $mod+F2 exec --no-startup-id jumptool config
+bindsym $mod+Shift+F2 exec --no-startup-id jumptool dir
+bindsym $mod+F3 exec launchpersonal
+
+# System hotkeys
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5
+bindsym Shift+XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5
+bindsym Shift+XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
+
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym Shift+XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -1%
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +1%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+bindsym XF86Display exec --no-startup-id displayselect
+
+# Script menus
+bindsym $mod+Shift+m exec --no-startup-id mountmenu
+bindsym $mod+Control+m exec --no-startup-id umountmenu
+
+bindsym Print exec --no-startup-id screenshot screen
+bindsym Shift+Print exec --no-startup-id screenshot rect
+bindsym Control+Print exec --no-startup-id screenshot window
+bindsym $alt+Print exec --no-startup-id screenshot
+bindsym $mod+Shift+s exec --no-startup-id screenshot rect
