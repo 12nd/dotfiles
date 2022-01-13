@@ -55,11 +55,12 @@ bar {
 # Startup
 exec --no-startup-id picom -b
 exec --no-startup-id setwp
-exec --no-startup-id remapkb
+exec_always --no-startup-id remapkb
 
 exec --no-startup-id seafile-applet
 exec --no-startup-id redshift-gtk -l -37.8136:144.9631 -t 6500K:2700K
 exec --no-startup-id ibus-daemon -drxR
+exec --no-startup-id unclutter
 
 
 # ------------ COLORS ----------------
@@ -195,19 +196,19 @@ bindsym $mod+space exec --no-startup-id dmenu_run
 bindsym $mod+$alt+space exec --no-startup-id i3-dmenu-desktop
 
 bindsym $mod+e exec --no-startup-id $TERMINAL -e $SHELL -i -c $FILE
-bindsym $mod+Shift+e exec sdmenu
+bindsym $mod+Shift+e exec --no-startup-id sdmenu
 bindsym $mod+Control+e exec thunar
 bindsym $mod+w exec $BROWSER
 
 bindsym $mod+p exec keepassxc
-bindsym $mod+Shift+p exec termfloat btm
-bindsym $mod+Control+p exec termfloat sudo powertop
-bindsym $mod+$alt+p exec termfloat htop
-bindsym $mod+Shift+n exec joplin-desktop
+bindsym $mod+Shift+p exec --no-startup-id termfloat btm
+bindsym $mod+Control+p exec --no-startup-id termfloat sudo powertop
+bindsym $mod+$alt+p exec --no-startup-id termfloat htop
+bindsym $mod+Shift+n exec net.cozic.joplin_desktop
 bindsym $mod+m exec evolution
 bindsym $mod+c exec caprine
 bindsym $mod+Shift+c exec gnome-calculator
-bindsym $mod+Control+c exec termfloat octave
+bindsym $mod+Control+c exec --no-startup-id termfloat octave
 bindsym $mod+Control+o exec obs
 bindsym $mod+d exec discord
 bindsym $mod+Shift+d exec --no-startup-id displayselect
@@ -216,7 +217,7 @@ bindsym $mod+y exec --no-startup-id transset-df -m 0.87 -a
 
 bindsym $mod+F2 exec --no-startup-id jumptool config
 bindsym $mod+Shift+F2 exec --no-startup-id jumptool dir
-bindsym $mod+F3 exec launchpersonal
+bindsym $mod+F3 exec --no-startup-id launchpersonal
 
 # System hotkeys
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5
