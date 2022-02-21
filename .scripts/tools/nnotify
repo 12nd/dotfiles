@@ -24,7 +24,7 @@ case "$1" in
 		;;
 	
 	eth)
-		ifc="${ETH_IFACE:-enp3s0}"
+		ifc="${ETH_IFACE:-enp9s0}"
 		title=" IP address ($ifc)"
 		msg="$(ip a s dev "$ifc" | awk '/inet / { print $2 }' | sed 's/\/.*//')"
 		;;

@@ -36,29 +36,28 @@ format = "{min}min,{max}max,{average}avg"
 chip = "*-isa-*"
 inputs = ["CPUTIN", "SYSTIN"]
 
-
 [[block]]
-block = "net"
-format = "{ip}{speed_down}{speed_up}"
-format_alt = "{ip} {graph_down} {graph_up}"
-interval = 5
+block = "networkmanager"
+on_click = "nnotify eth"
+device_format = "{icon}"
 
 [[block]]
 block = "disk_space"
-path = "/home"
+path = "/"
 info_type = "available"
-on_click = "nnotify disk /home"
+on_click = "nnotify disk /"
 unit = "GB"
 interval = 60
 warning = 20.0
 alert = 10.0
-format = "{icon}{available}"
+format = "{icon} {available}"
 
 [[block]]
 block = "sound"
 format = "{volume}"
 max_vol = 100
 show_volume_when_muted = true
+step_width = 1
 
 [[block]]
 block = "time"
