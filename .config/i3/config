@@ -60,6 +60,7 @@ exec_always --no-startup-id remapkb
 exec --no-startup-id seafile-applet
 exec --no-startup-id redshift-gtk -l -37.8136:144.9631 -t 6500K:2700K
 exec --no-startup-id ibus-daemon -drxR
+exec --no-startup-id kdeconnect-indicator
 exec --no-startup-id unclutter
 
 
@@ -106,7 +107,10 @@ bindsym $mod+apostrophe split v
 bindsym $mod+t layout splith
 bindsym $mod+$alt+t layout splitv
 bindsym $mod+Shift+t layout tabbed
-bindsym $mod+Ctrl+t	layout stacking
+bindsym $mod+Ctrl+t layout stacking
+# focus parent
+bindsym $mod+a focus parent
+bindsym $mod+Shift+a focus child
 
 bindsym $mod+Shift+q kill
 bindsym $mod+f fullscreen toggle
@@ -115,6 +119,8 @@ bindsym $mod+f fullscreen toggle
 bindsym $mod+Shift+space floating toggle
 # change focus between tiling / floating windows
 bindsym $mod+Ctrl+space focus mode_toggle
+# Center a flaoting window
+bindsym $mod+Shift+c move position center
 
 # make the currently focused window a scratchpad
 bindsym $mod+Shift+minus move scratchpad
@@ -153,6 +159,9 @@ bindsym $mod+Shift+6 move container to workspace $ws6
 bindsym $mod+Shift+7 move container to workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
+
+# alt tab
+bindsym $alt+Tab workspace back_and_forth
 
 # reload the configuration file
 bindsym $mod+Shift+F10 reload
@@ -196,7 +205,6 @@ bindsym $mod+space exec --no-startup-id dmenu_run
 bindsym $mod+$alt+space exec --no-startup-id i3-dmenu-desktop
 
 bindsym $mod+e exec --no-startup-id $TERMINAL -e $SHELL -i -c $FILE
-bindsym $mod+Shift+e exec --no-startup-id sdmenu
 bindsym $mod+Control+e exec thunar
 bindsym $mod+w exec $BROWSER
 
@@ -207,11 +215,9 @@ bindsym $mod+$alt+p exec --no-startup-id termfloat htop
 bindsym $mod+Shift+n exec net.cozic.joplin_desktop
 bindsym $mod+m exec evolution
 bindsym $mod+c exec caprine
-bindsym $mod+Shift+c exec gnome-calculator
-bindsym $mod+Control+c exec --no-startup-id termfloat octave
+bindsym $mod+Control+c exec gnome-calculator
 bindsym $mod+Control+o exec obs
 bindsym $mod+d exec discord
-bindsym $mod+Shift+d exec --no-startup-id displayselect
 # compositor transparency on any program
 bindsym $mod+y exec --no-startup-id transset-df -m 0.87 -a
 
@@ -235,8 +241,11 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 bindsym XF86Display exec --no-startup-id displayselect
 
 # Script menus
+bindsym $mod+Shift+e exec --no-startup-id sdmenu
 bindsym $mod+Shift+m exec --no-startup-id mountmenu
 bindsym $mod+Control+m exec --no-startup-id umountmenu
+bindsym $mod+Shift+d exec --no-startup-id displayselect
+bindsym $mod+Shift+x exec --no-startup-id selectaudiosink
 
 bindsym Print exec --no-startup-id screenshot screen
 bindsym Shift+Print exec --no-startup-id screenshot rect

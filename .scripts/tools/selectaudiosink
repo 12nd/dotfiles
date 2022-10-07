@@ -1,0 +1,10 @@
+#!/bin/sh
+
+dsink="$(pactl list short sinks \
+  | awk '{print $2}' \
+  | dmenu -i -p "Select audio output" \
+  | awk '{print $1}')"
+[ "$dsink" = "" ] && exit 0
+
+pactl set-default-sink "$dsink" \
+  && notify-send "Audio Output" "Default audio sink set to $dsink" && exit 0
