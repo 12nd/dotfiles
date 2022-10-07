@@ -1,4 +1,4 @@
-export PATH=$HOME/.local/bin:$HOME/.scripts/tools:$HOME/.scripts/personal:$HOME/.local/share/npm/bin:/usr/NX/bin:$PATH
+export PATH=$HOME/.local/bin:$HOME/.scripts/tools:$HOME/.scripts/personal:$HOME/.local/share/npm/bin:/usr/NX/bin:$HOME/.emacs.d/bin:$PATH:/var/lib/flatpak/exports/bin
 
 export MANPATH=$MANPATH:$HOME/.local/share/npm/share/man
 export INFOPATH=$MANPATH

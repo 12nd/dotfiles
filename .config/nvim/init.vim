@@ -83,10 +83,11 @@ autocmd! ColorScheme afterglow call s:transparent_bg_force()
 colorscheme afterglow
 
 
-"  Tabs - 4 wide
-set tabstop=4
-set softtabstop=0 noexpandtab
-set shiftwidth=4
+"  Tabs - 2 spaces
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set expandtab
 
 "  Mouse - dont kill me pls
 set mouse=a

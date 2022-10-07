@@ -23,6 +23,8 @@
 
 !/template/
 
+!/.doom.d
+
 # Specific files
 !/readme.md
 
