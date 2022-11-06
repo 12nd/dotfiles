@@ -2,7 +2,7 @@
 name = "native"
 
 [icons]
-name = "awesome"
+name = "none"
 
 [[block]]
 block = "focused_window"
