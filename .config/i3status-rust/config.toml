@@ -12,22 +12,40 @@ full = " $title.str(max_w:50) |"
 short = " $title.str(max_w:10) |"
 
 [[block]]
+block = "dnf"
+interval = 3600
+format = " $icon $count.eng(w:1) updates available "
+format_up_to_date = " $icon $count.eng(w:1) "
+critical_updates_regex = "(linux|linux-lts|linux-zen)"
+[[block.click]]
+# shows dmenu with cached available updates. Any dmenu alternative should also work.
+button = "left"
+cmd = "dnf list -q --upgrades | tail -n +2 | dmenu"
+
+[[block]]
 block = "cpu"
-interval = 1
+interval = 10
 format_alt = " $icon $barchart $utilization "
-format = " $icon $frequency{ $boost|} "
+format = " $icon $frequency.eng(w:1){ $boost|} "
 
 [[block]]
 block = "memory"
 format = " $icon $mem_used_percents.eng(w:1) "
 format_alt = " $icon_swap $swap_free.eng(w:3,u:B,p:M)/$swap_total.eng(w:3,u:B,p:M)($swap_used_percents.eng(w:2)) "
-interval = 30
+interval = 60
 warning_mem = 70
 critical_mem = 90
 
 [[block]]
+block = "amd_gpu"
+device = "card1"
+format = " $icon $utilization "
+format_alt = " $icon MEM: $vram_used_percents ($vram_used/$vram_total) "
+interval = 10
+
+[[block]]
 block = "temperature"
-format = " $icon $max max "
+format = " $icon $max "
 format_alt = " $icon $min min, $max max, $average avg "
 interval = 10
 chip = "*-isa-*"
@@ -45,7 +63,7 @@ block = "disk_space"
 path = "/"
 info_type = "available"
 alert_unit = "GB"
-interval = 60
+interval = 3600
 warning = 20.0
 alert = 10.0
 format = " $icon $available "
@@ -65,6 +83,10 @@ format = " $icon  {$volume.eng(w:2)|} "
 show_volume_when_muted = true
 max_vol = 100
 step_width = 1
+[[block.click]]
+button = "left"
+cmd = "selectaudiosink"
+update = true
 
 [[block]]
 block = "time"

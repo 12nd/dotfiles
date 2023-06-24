@@ -56,6 +56,7 @@ bar {
 exec --no-startup-id picom -b
 exec --no-startup-id setwp
 exec_always --no-startup-id remapkb
+exec_always --no-startup-id autorandr --change && reloaddisplay
 exec --no-startup-id /usr/libexec/polkit-gnome-authentication-agent-1
 
 exec --no-startup-id seafile-applet
@@ -129,37 +130,63 @@ bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
 # Workspace stuffs
-set $ws1 "1:一"
-set $ws2 "2:二"
-set $ws3 "3:三"
-set $ws4 "4:四"
-set $ws5 "5:五"
-set $ws6 "6:六"
-set $ws7 "7:七"
-set $ws8 "8:八"
-set $ws9 "9:九"
+
+# multi monitors
+# https://www.reddit.com/r/i3wm/comments/5zwbg0/comment/df54fka/
+set $display1 "DisplayPort-0"
+set $display2 "DisplayPort-1"
+
+bindsym $mod+F1 focus output $display1
+bindsym $mod+F2 focus output $display2
+
+workspace 101 output $display1
+workspace 102 output $display1
+workspace 103 output $display1
+workspace 104 output $display1
+workspace 105 output $display1
+workspace 106 output $display1
+workspace 107 output $display1
+workspace 108 output $display1
+workspace 109 output $display1
+workspace 110 output $display1
+
+workspace 201 output $display2
+workspace 202 output $display2
+workspace 203 output $display2
+workspace 204 output $display2
+workspace 205 output $display2
+workspace 206 output $display2
+workspace 207 output $display2
+workspace 208 output $display2
+workspace 209 output $display2
+workspace 210 output $display2
 
 # switch to workspace
-bindsym $mod+1 workspace $ws1
-bindsym $mod+2 workspace $ws2
-bindsym $mod+3 workspace $ws3
-bindsym $mod+4 workspace $ws4
-bindsym $mod+5 workspace $ws5
-bindsym $mod+6 workspace $ws6
-bindsym $mod+7 workspace $ws7
-bindsym $mod+8 workspace $ws8
-bindsym $mod+9 workspace $ws9
+
+bindsym $mod+1 exec --no-startup-id i3monitorws goto 01
+bindsym $mod+2 exec --no-startup-id i3monitorws goto 02
+bindsym $mod+3 exec --no-startup-id i3monitorws goto 03
+bindsym $mod+4 exec --no-startup-id i3monitorws goto 04
+bindsym $mod+5 exec --no-startup-id i3monitorws goto 05
+bindsym $mod+6 exec --no-startup-id i3monitorws goto 06
+bindsym $mod+7 exec --no-startup-id i3monitorws goto 07
+bindsym $mod+8 exec --no-startup-id i3monitorws goto 08
+bindsym $mod+9 exec --no-startup-id i3monitorws goto 09
+bindsym $mod+0 exec --no-startup-id i3monitorws goto 10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace $ws1
-bindsym $mod+Shift+2 move container to workspace $ws2
-bindsym $mod+Shift+3 move container to workspace $ws3
-bindsym $mod+Shift+4 move container to workspace $ws4
-bindsym $mod+Shift+5 move container to workspace $ws5
-bindsym $mod+Shift+6 move container to workspace $ws6
-bindsym $mod+Shift+7 move container to workspace $ws7
-bindsym $mod+Shift+8 move container to workspace $ws8
-bindsym $mod+Shift+9 move container to workspace $ws9
+
+bindsym $mod+Shift+1 exec --no-startup-id i3monitorws move 01
+bindsym $mod+Shift+2 exec --no-startup-id i3monitorws move 02
+bindsym $mod+Shift+3 exec --no-startup-id i3monitorws move 03
+bindsym $mod+Shift+4 exec --no-startup-id i3monitorws move 04
+bindsym $mod+Shift+5 exec --no-startup-id i3monitorws move 05
+bindsym $mod+Shift+6 exec --no-startup-id i3monitorws move 06
+bindsym $mod+Shift+7 exec --no-startup-id i3monitorws move 07
+bindsym $mod+Shift+8 exec --no-startup-id i3monitorws move 08
+bindsym $mod+Shift+9 exec --no-startup-id i3monitorws move 09
+bindsym $mod+Shift+0 exec --no-startup-id i3monitorws move 10
+
 
 # alt tab
 bindsym $alt+Tab workspace back_and_forth
@@ -222,9 +249,9 @@ bindsym $mod+d exec discord
 # compositor transparency on any program
 bindsym $mod+y exec --no-startup-id transset-df -m 0.87 -a
 
-bindsym $mod+F2 exec --no-startup-id jumptool config
-bindsym $mod+Shift+F2 exec --no-startup-id jumptool dir
-bindsym $mod+F3 exec --no-startup-id launchpersonal
+# bindsym $mod+F2 exec --no-startup-id jumptool config
+# bindsym $mod+Shift+F2 exec --no-startup-id jumptool dir
+# bindsym $mod+F3 exec --no-startup-id launchpersonal
 
 # System hotkeys
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5
