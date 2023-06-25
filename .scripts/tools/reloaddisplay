@@ -1,5 +1,6 @@
 #!/bin/sh
 
+autorandr --change --skip-options gamma
 setwp		# Fix background if screen size/arrangement has changed.
 remapkb		# Re-remap keys if keyboard added (for laptop bases)
 pgrep -x dunst >/dev/null && killall dunst && setsid dunst & # Restart dunst to ensure proper location on screen

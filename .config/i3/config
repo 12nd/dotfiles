@@ -78,7 +78,7 @@ bar {
 }
 
 # Startup
-exec_always --no-startup-id autorandr --change --skip-options gamma && reloaddisplay
+exec_always --no-startup-id reloaddisplay
 exec --no-startup-id picom -b
 exec --no-startup-id setwp
 exec_always --no-startup-id remapkb
