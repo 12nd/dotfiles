@@ -162,6 +162,9 @@ bindsym $mod+minus scratchpad show
 bindsym $mod+F1 focus output $display1
 bindsym $mod+F2 focus output $display2
 
+bindsym $mod+Shift+F1 move container to output $display1
+bindsym $mod+Shift+F2 move container to output $display2
+
 set $ws01 "01:一"
 set $ws02 "02:二"
 set $ws03 "03:三"
