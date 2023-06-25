@@ -40,11 +40,31 @@ set $display2 "DisplayPort-1"
 
 # Start bar
 bar {
+	output $display1
     font pango:mono 12
     position top
     status_command i3status-rs $HOME/.config/i3status-rust/config.toml
     strip_workspace_numbers yes
 	tray_output $display1
+    colors {
+        separator #666666
+        background #000000
+        statusline #dddddd
+        #                   BORDER BACKGROUND TEXT
+        focused_workspace $alt_color $alt_color $color0
+        active_workspace $color0 $color0 $focused_color
+        inactive_workspace $color0 $color0 $color1
+        urgent_workspace $alertred $red $white
+    }
+}
+
+bar {
+	output $display2
+    font pango:mono 12
+    position top
+    status_command i3status-rs $HOME/.config/i3status-rust/config-small.toml
+    strip_workspace_numbers yes
+	tray_output none
     colors {
         separator #666666
         background #000000

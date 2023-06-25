@@ -1,0 +1,32 @@
+[theme]
+theme = "native"
+
+[icons]
+icons = "awesome5"
+
+
+[[block]]
+block = "focused_window"
+[block.format]
+full = " $title.str(max_w:50) |"
+short = " $title.str(max_w:10) |"
+
+[[block]]
+block = "sound"
+format = " $icon  {$volume.eng(w:2)|} "
+show_volume_when_muted = true
+max_vol = 100
+step_width = 1
+[[block.click]]
+button = "left"
+cmd = "selectaudiosink"
+update = true
+
+[[block]]
+block = "time"
+interval = 5
+format = " $icon $timestamp.datetime(f:'%a %d/%m %R') "
+[[block.click]]
+button = "left"
+cmd = "nnotify time"
+update = true
