@@ -1,7 +1,7 @@
 # i3 config file (v4)
 
 
-# -------------- INITIAL SETUP -----------------
+# --------------- INITIAL SETUP ---------------
 # i3-gaps gaps
 for_window [class="^.*"] border pixel 2
 gaps inner 20
@@ -38,7 +38,28 @@ for_window [workspace=".*-f$"] floating enable
 set $display1 "DisplayPort-0"
 set $display2 "DisplayPort-1"
 
-# Start bar
+# --------------- COLORS ---------------
+# set Xresources colors:
+set_from_resource $normal_color color8 #333333
+set_from_resource $focused_color color15 #ffffff
+set_from_resource $alt_color color2 #0088cc
+set_from_resource $color0 color0 #000000
+set_from_resource $color1 color1 #888888
+set $transparent #00000000
+set $alertred #900000
+set $red #ff0000
+set $black #000000
+set $white #ffffff
+
+# COLORCLASS            BORDER          BACKGROUND      TEXT    INDICATOR   CHILD_BORDER
+client.focused          $focused_color  $focused_color  $color0  $alt_color  $focused_color
+client.unfocused        $normal_color   $normal_color   $color0  $alt_color  $normal_color
+client.focused_inactive $normal_color   $normal_color   $color0  $alt_color  $normal_color
+client.urgent           $alertred       $red            $color0  $alt_color  $alertred
+
+client.background       $color0
+
+# --------------- STATUS BAR ---------------
 bar {
 	output $display1
     font pango:mono 12
@@ -77,7 +98,8 @@ bar {
     }
 }
 
-# Startup
+# --------------- STARTUP ---------------
+
 exec_always --no-startup-id reloaddisplay
 exec --no-startup-id picom -b
 exec --no-startup-id setwp
@@ -89,28 +111,6 @@ exec --no-startup-id redshift-gtk -l -37.8136:144.9631 -t 6500K:2700K
 exec --no-startup-id ibus-daemon -drxR
 exec --no-startup-id kdeconnect-indicator
 exec --no-startup-id unclutter
-
-
-# ------------ COLORS ----------------
-# set Xresources colors:
-set_from_resource $normal_color color8 #333333
-set_from_resource $focused_color color15 #ffffff
-set_from_resource $alt_color color2 #0088cc
-set_from_resource $color0 color0 #000000
-set_from_resource $color1 color1 #888888
-set $transparent #00000000
-set $alertred #900000
-set $red #ff0000
-set $black #000000
-set $white #ffffff
-
-# COLORCLASS            BORDER          BACKGROUND      TEXT    INDICATOR   CHILD_BORDER
-client.focused          $focused_color  $focused_color  $color0  $alt_color  $focused_color
-client.unfocused        $normal_color   $normal_color   $color0  $alt_color  $normal_color
-client.focused_inactive $normal_color   $normal_color   $color0  $alt_color  $normal_color
-client.urgent           $alertred       $red            $color0  $alt_color  $alertred
-
-client.background       $color0
 
 # --------------- i3 BINDINGS --------------
 # i3 Focus/Window mgmt
@@ -260,7 +260,7 @@ bindsym $mod+Shift+o layout splitv; move left; resize grow right 10 px or 10 ppt
 # https://www.reddit.com/r/i3wm/comments/8c6yfy/how_to_reset_a_workspace_move_all_nodes_to_root/
 bindsym $mod+o [tiling workspace="__focused__"] move workspace "reorder"; [workspace="reorder"] move workspace current
 
-# --------------- APP & SYSTEM BINDINGS --------------
+# --------------- APP & SYSTEM BINDINGS ---------------
 
 # programs
 bindsym $mod+Return exec --no-startup-id $TERMINAL
@@ -279,16 +279,7 @@ bindsym $mod+Control+p exec --no-startup-id termfloat sudo powertop
 bindsym $mod+$alt+p exec --no-startup-id termfloat htop
 bindsym $mod+Shift+n exec net.cozic.joplin_desktop
 bindsym $mod+m exec evolution
-bindsym $mod+c exec caprine
 bindsym $mod+Control+c exec gnome-calculator
-bindsym $mod+Control+o exec obs
-bindsym $mod+d exec discord
-# compositor transparency on any program
-bindsym $mod+y exec --no-startup-id transset-df -m 0.87 -a
-
-# bindsym $mod+F2 exec --no-startup-id jumptool config
-# bindsym $mod+Shift+F2 exec --no-startup-id jumptool dir
-# bindsym $mod+F3 exec --no-startup-id launchpersonal
 
 # System hotkeys
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5
