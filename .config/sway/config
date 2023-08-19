@@ -1,4 +1,4 @@
-# i3 config file (v4)
+# sway config -- based off i3 config
 
 
 # --------------- INITIAL SETUP ---------------
@@ -35,82 +35,107 @@ for_window [instance="quickterm"] move scratchpad
 for_window [workspace=".*-f$"] floating enable
 
 # multi monitors
-set $display1 "DisplayPort-0"
-set $display2 "DisplayPort-1"
+output DP-1 {
+	mode 2560x1440@143.998Hz
+}
+output DP-2 {
+	mode 1920x1080@164.955Hz
+}
 
-# --------------- COLORS ---------------
-# set Xresources colors:
-set_from_resource $normal_color color8 #333333
-set_from_resource $focused_color color15 #ffffff
-set_from_resource $alt_color color2 #0088cc
-set_from_resource $color0 color0 #000000
-set_from_resource $color1 color1 #888888
-set $transparent #00000000
-set $alertred #900000
-set $red #ff0000
-set $black #000000
-set $white #ffffff
+set $display1 "DP-1"
+set $display2 "DP-2"
 
-# COLORCLASS            BORDER          BACKGROUND      TEXT    INDICATOR   CHILD_BORDER
-client.focused          $focused_color  $focused_color  $color0  $alt_color  $focused_color
-client.unfocused        $normal_color   $normal_color   $color0  $alt_color  $normal_color
-client.focused_inactive $normal_color   $normal_color   $color0  $alt_color  $normal_color
-client.urgent           $alertred       $red            $color0  $alt_color  $alertred
 
-client.background       $color0
+# # --------------- COLORS ---------------
+# # set Xresources colors:
+# set_from_resource $normal_color color8 #333333
+# set_from_resource $focused_color color15 #ffffff
+# set_from_resource $alt_color color2 #0088cc
+# set_from_resource $color0 color0 #000000
+# set_from_resource $color1 color1 #888888
+# set $transparent #00000000
+# set $alertred #900000
+# set $red #ff0000
+# set $black #000000
+# set $white #ffffff
+#
+# # COLORCLASS            BORDER          BACKGROUND      TEXT    INDICATOR   CHILD_BORDER
+# client.focused          $focused_color  $focused_color  $color0  $alt_color  $focused_color
+# client.unfocused        $normal_color   $normal_color   $color0  $alt_color  $normal_color
+# client.focused_inactive $normal_color   $normal_color   $color0  $alt_color  $normal_color
+# client.urgent           $alertred       $red            $color0  $alt_color  $alertred
+#
+# client.background       $color0
 
 # --------------- STATUS BAR ---------------
-bar {
-	output $display1
-    font pango:mono 12
-    position top
-    status_command i3status-rs $HOME/.config/i3status-rust/config.toml
-    strip_workspace_numbers yes
-	tray_output $display1
-    colors {
-        separator #666666
-        background #000000
-        statusline #dddddd
-        #                   BORDER BACKGROUND TEXT
-        focused_workspace $alt_color $alt_color $color0
-        active_workspace $color0 $color0 $focused_color
-        inactive_workspace $color0 $color0 $color1
-        urgent_workspace $alertred $red $white
-    }
-}
+# bar {
+# 	output $display1
+#     font pango:mono 12
+#     position top
+#     status_command i3status-rs $HOME/.config/i3status-rust/config.toml
+#     strip_workspace_numbers yes
+# 	tray_output $display1
+#     colors {
+#         separator #666666
+#         background #000000
+#         statusline #dddddd
+#         #                   BORDER BACKGROUND TEXT
+#         focused_workspace $alt_color $alt_color $color0
+#         active_workspace $color0 $color0 $focused_color
+#         inactive_workspace $color0 $color0 $color1
+#         urgent_workspace $alertred $red $white
+#     }
+# }
+#
+# bar {
+# 	output $display2
+#     font pango:mono 12
+#     position top
+#     status_command i3status-rs $HOME/.config/i3status-rust/config-small.toml
+#     strip_workspace_numbers yes
+# 	tray_output none
+#     colors {
+#         separator #666666
+#         background #000000
+#         statusline #dddddd
+#         #                   BORDER BACKGROUND TEXT
+#         focused_workspace $alt_color $alt_color $color0
+#         active_workspace $color0 $color0 $focused_color
+#         inactive_workspace $color0 $color0 $color1
+#         urgent_workspace $alertred $red $white
+#     }
+# }
 
 bar {
-	output $display2
-    font pango:mono 12
-    position top
-    status_command i3status-rs $HOME/.config/i3status-rust/config-small.toml
     strip_workspace_numbers yes
-	tray_output none
-    colors {
-        separator #666666
-        background #000000
-        statusline #dddddd
-        #                   BORDER BACKGROUND TEXT
-        focused_workspace $alt_color $alt_color $color0
-        active_workspace $color0 $color0 $focused_color
-        inactive_workspace $color0 $color0 $color1
-        urgent_workspace $alertred $red $white
-    }
+    position top
+	swaybar_command waybar
 }
+
+# input
+input type:keyboard {
+	repeat_delay 200
+	repeat_rate 50
+	xkb_options caps:escape
+}
+
+# wallpaper
+output "*" bg /home/james/wall.jpg fill
+
 
 # --------------- STARTUP ---------------
 
-exec_always --no-startup-id reloaddisplay
-exec --no-startup-id picom -b
-exec --no-startup-id setwp
-exec_always --no-startup-id remapkb
-exec --no-startup-id /usr/libexec/polkit-gnome-authentication-agent-1
+# exec_always --no-startup-id reloaddisplay
+# exec --no-startup-id picom -b
+# exec --no-startup-id setwp
+# exec_always --no-startup-id remapkb
+# exec --no-startup-id /usr/libexec/polkit-gnome-authentication-agent-1
 
-exec --no-startup-id seafile-applet
-exec --no-startup-id redshift-gtk -l -37.8136:144.9631 -t 6500K:2700K
-exec --no-startup-id ibus-daemon -drxR
-exec --no-startup-id kdeconnect-indicator
-exec --no-startup-id unclutter
+# exec --no-startup-id seafile-applet
+# exec --no-startup-id redshift-gtk -l -37.8136:144.9631 -t 6500K:2700K
+# exec --no-startup-id ibus-daemon -drxR
+# exec --no-startup-id kdeconnect-indicator
+# exec --no-startup-id unclutter
 
 # --------------- i3 BINDINGS --------------
 # i3 Focus/Window mgmt
@@ -200,29 +225,29 @@ workspace 2$ws10 output $display2
 
 # switch to workspace
 
-bindsym $mod+1 exec --no-startup-id i3monitorws goto $ws01
-bindsym $mod+2 exec --no-startup-id i3monitorws goto $ws02
-bindsym $mod+3 exec --no-startup-id i3monitorws goto $ws03
-bindsym $mod+4 exec --no-startup-id i3monitorws goto $ws04
-bindsym $mod+5 exec --no-startup-id i3monitorws goto $ws05
-bindsym $mod+6 exec --no-startup-id i3monitorws goto $ws06
-bindsym $mod+7 exec --no-startup-id i3monitorws goto $ws07
-bindsym $mod+8 exec --no-startup-id i3monitorws goto $ws08
-bindsym $mod+9 exec --no-startup-id i3monitorws goto $ws09
-bindsym $mod+0 exec --no-startup-id i3monitorws goto $ws10
+bindsym $mod+1 exec --no-startup-id swaymonitorws goto $ws01
+bindsym $mod+2 exec --no-startup-id swaymonitorws goto $ws02
+bindsym $mod+3 exec --no-startup-id swaymonitorws goto $ws03
+bindsym $mod+4 exec --no-startup-id swaymonitorws goto $ws04
+bindsym $mod+5 exec --no-startup-id swaymonitorws goto $ws05
+bindsym $mod+6 exec --no-startup-id swaymonitorws goto $ws06
+bindsym $mod+7 exec --no-startup-id swaymonitorws goto $ws07
+bindsym $mod+8 exec --no-startup-id swaymonitorws goto $ws08
+bindsym $mod+9 exec --no-startup-id swaymonitorws goto $ws09
+bindsym $mod+0 exec --no-startup-id swaymonitorws goto $ws10
 
 # move focused container to workspace
 
-bindsym $mod+Shift+1 exec --no-startup-id i3monitorws move $ws01
-bindsym $mod+Shift+2 exec --no-startup-id i3monitorws move $ws02
-bindsym $mod+Shift+3 exec --no-startup-id i3monitorws move $ws03
-bindsym $mod+Shift+4 exec --no-startup-id i3monitorws move $ws04
-bindsym $mod+Shift+5 exec --no-startup-id i3monitorws move $ws05
-bindsym $mod+Shift+6 exec --no-startup-id i3monitorws move $ws06
-bindsym $mod+Shift+7 exec --no-startup-id i3monitorws move $ws07
-bindsym $mod+Shift+8 exec --no-startup-id i3monitorws move $ws08
-bindsym $mod+Shift+9 exec --no-startup-id i3monitorws move $ws09
-bindsym $mod+Shift+0 exec --no-startup-id i3monitorws move $ws10
+bindsym $mod+Shift+1 exec --no-startup-id swaymonitorws move $ws01
+bindsym $mod+Shift+2 exec --no-startup-id swaymonitorws move $ws02
+bindsym $mod+Shift+3 exec --no-startup-id swaymonitorws move $ws03
+bindsym $mod+Shift+4 exec --no-startup-id swaymonitorws move $ws04
+bindsym $mod+Shift+5 exec --no-startup-id swaymonitorws move $ws05
+bindsym $mod+Shift+6 exec --no-startup-id swaymonitorws move $ws06
+bindsym $mod+Shift+7 exec --no-startup-id swaymonitorws move $ws07
+bindsym $mod+Shift+8 exec --no-startup-id swaymonitorws move $ws08
+bindsym $mod+Shift+9 exec --no-startup-id swaymonitorws move $ws09
+bindsym $mod+Shift+0 exec --no-startup-id swaymonitorws move $ws10
 
 
 # alt tab
@@ -266,8 +291,8 @@ bindsym $mod+o [tiling workspace="__focused__"] move workspace "reorder"; [works
 bindsym $mod+Return exec --no-startup-id $TERMINAL
 bindsym $mod+Shift+Return exec --no-startup-id termdir
 bindsym $mod+Control+Return exec --no-startup-id termfloat
-bindsym $mod+space exec --no-startup-id dmenu_run
-bindsym $mod+$alt+space exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+space exec --no-startup-id bemenu-run -i
+bindsym $mod+$alt+space exec --no-startup-id j4-dmenu-desktop --dmenu='bemenu -i'
 
 bindsym $mod+e exec --no-startup-id $TERMINAL -e $SHELL -i -c $FILE
 bindsym $mod+Control+e exec thunar
@@ -303,8 +328,8 @@ bindsym $mod+Control+m exec --no-startup-id umountmenu
 bindsym $mod+Shift+d exec --no-startup-id displayselect
 bindsym $mod+Shift+x exec --no-startup-id selectaudiosink
 
-bindsym Print exec --no-startup-id screenshot screen
-bindsym Shift+Print exec --no-startup-id screenshot rect
-bindsym Control+Print exec --no-startup-id screenshot window
-bindsym $alt+Print exec --no-startup-id screenshot
-bindsym $mod+Shift+s exec --no-startup-id screenshot rect
+bindsym Print exec --no-startup-id wl-copy < $(grimshot save output)
+bindsym Shift+Print exec --no-startup-id wl-copy < $(grimshot save area)
+bindsym Control+Print exec --no-startup-id wl-copy < $(grimshot save active)
+# bindsym $alt+Print exec --no-startup-id screenshot
+bindsym $mod+Shift+s exec --no-startup-id wl-copy < $(grimshot save area)

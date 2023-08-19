@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# https://www.reddit.com/r/i3wm/comments/5zwbg0/comment/df54fka/
+
+action="$1"
+workspace="$2"
+
+focused_workspace=$(swaymsg -t get_workspaces | jq --raw-output '.[]|select(.focused).num')
+
+active_prefix=${focused_workspace:0:1}
+
+target_workspace=${active_prefix}${workspace}
+
+if [[ "$action" == "move" ]]; 
+then
+    swaymsg "move container to workspace $target_workspace"
+else
+    swaymsg "workspace $target_workspace"
+fi
