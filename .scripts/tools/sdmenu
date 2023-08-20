@@ -11,6 +11,9 @@ elif pgrep -x bspwm; then
 elif pgrep -x i3; then
 	refreshwm="i3-msg reload"
 	exitwm="i3-msg exit"
+elif pgrep -x sway; then
+	refreshwm="swaymsg reload"
+	exitwm="swaymsg exit"
 fi
 
 case "$(printf "shutdown\\nreboot\\nsuspend\\nhibernate\\nrefresh\\nlogout" | dmenu -i -p "time to leave?")" in
