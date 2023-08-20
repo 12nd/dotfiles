@@ -53,6 +53,8 @@
 /.config/Caprine
 /.config/Joplin
 /.config/Nextcloud
+/.config/Seafile
+/.config/Thunar
 /.config/configstore
 /.config/@joplin
 /.config/joplin-desktop
@@ -60,6 +62,7 @@
 /.config/pulse
 /.config/nvim/autoload
 /.config/nvim/plugged
+/.config/nvim/plugin
 /.config/discord
 /.config/bottom
 /.config/caffeine
