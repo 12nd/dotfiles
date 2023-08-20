@@ -37,9 +37,11 @@ for_window [workspace=".*-f$"] floating enable
 # multi monitors
 output DP-1 {
 	mode 2560x1440@143.998Hz
+	position 1920 0
 }
 output DP-2 {
 	mode 1920x1080@164.955Hz
+	position 0 0
 }
 
 set $display1 "DP-1"
@@ -47,70 +49,76 @@ set $display2 "DP-2"
 
 
 # # --------------- COLORS ---------------
+exec --no-startup-id setwp
+include "$HOME/.cache/wal/colors-sway"
+# wallpaper
+output "*" bg $wallpaper fill
+
+# set colours from wal
 # # set Xresources colors:
 # set_from_resource $normal_color color8 #333333
 # set_from_resource $focused_color color15 #ffffff
 # set_from_resource $alt_color color2 #0088cc
 # set_from_resource $color0 color0 #000000
 # set_from_resource $color1 color1 #888888
-# set $transparent #00000000
-# set $alertred #900000
-# set $red #ff0000
-# set $black #000000
-# set $white #ffffff
-#
-# # COLORCLASS            BORDER          BACKGROUND      TEXT    INDICATOR   CHILD_BORDER
-# client.focused          $focused_color  $focused_color  $color0  $alt_color  $focused_color
-# client.unfocused        $normal_color   $normal_color   $color0  $alt_color  $normal_color
-# client.focused_inactive $normal_color   $normal_color   $color0  $alt_color  $normal_color
-# client.urgent           $alertred       $red            $color0  $alt_color  $alertred
-#
-# client.background       $color0
+set $transparent #00000000
+set $alertred #900000
+set $red #ff0000
+set $black #000000
+set $white #ffffff
+
+# COLORCLASS            BORDER      BACKGROUND  TEXT        INDICATOR   CHILD_BORDER
+client.focused          $color15    $color15    $color0     $color2     $color15
+client.unfocused        $color8     $color8     $color0     $color2     $color8
+client.focused_inactive $color8     $color8     $color0     $color2     $color8
+client.urgent           $alertred   $red        $color0     $color2     $alertred
+
+client.background       $color0
 
 # --------------- STATUS BAR ---------------
-# bar {
-# 	output $display1
-#     font pango:mono 12
-#     position top
-#     status_command i3status-rs $HOME/.config/i3status-rust/config.toml
-#     strip_workspace_numbers yes
-# 	tray_output $display1
-#     colors {
-#         separator #666666
-#         background #000000
-#         statusline #dddddd
-#         #                   BORDER BACKGROUND TEXT
-#         focused_workspace $alt_color $alt_color $color0
-#         active_workspace $color0 $color0 $focused_color
-#         inactive_workspace $color0 $color0 $color1
-#         urgent_workspace $alertred $red $white
-#     }
-# }
-#
-# bar {
-# 	output $display2
-#     font pango:mono 12
-#     position top
-#     status_command i3status-rs $HOME/.config/i3status-rust/config-small.toml
-#     strip_workspace_numbers yes
-# 	tray_output none
-#     colors {
-#         separator #666666
-#         background #000000
-#         statusline #dddddd
-#         #                   BORDER BACKGROUND TEXT
-#         focused_workspace $alt_color $alt_color $color0
-#         active_workspace $color0 $color0 $focused_color
-#         inactive_workspace $color0 $color0 $color1
-#         urgent_workspace $alertred $red $white
-#     }
-# }
+bar {
+	output $display1
+    font pango:mono 12
+    position top
+    status_command i3status-rs $HOME/.config/i3status-rust/config.toml
+    strip_workspace_numbers yes
+	tray_output $display1
+    colors {
+        separator #666666
+        background #000000
+        statusline #dddddd
+        #                   BORDER BACKGROUND TEXT
+        focused_workspace $color2 $color2 $color0
+        active_workspace $color0 $color0 $color15
+        inactive_workspace $color0 $color0 $color1
+        urgent_workspace $alertred $red $white
+    }
+}
 
 bar {
-    strip_workspace_numbers yes
+	output $display2
+    font pango:mono 12
     position top
-	swaybar_command waybar
+    status_command i3status-rs $HOME/.config/i3status-rust/config-small.toml
+    strip_workspace_numbers yes
+	tray_output none
+    colors {
+        separator #666666
+        background #000000
+        statusline #dddddd
+        #                   BORDER BACKGROUND TEXT
+        focused_workspace $color2 $color2 $color0
+        active_workspace $color0 $color0 $color15
+        inactive_workspace $color0 $color0 $color1
+        urgent_workspace $alertred $red $white
+    }
 }
+
+# bar {
+#     strip_workspace_numbers yes
+#     position top
+# 	swaybar_command waybar
+# }
 
 # input
 input type:keyboard {
@@ -119,23 +127,16 @@ input type:keyboard {
 	xkb_options caps:escape
 }
 
-# wallpaper
-output "*" bg /home/james/wall.jpg fill
-
 
 # --------------- STARTUP ---------------
 
 # exec_always --no-startup-id reloaddisplay
-# exec --no-startup-id picom -b
-# exec --no-startup-id setwp
-# exec_always --no-startup-id remapkb
 # exec --no-startup-id /usr/libexec/polkit-gnome-authentication-agent-1
 
-# exec --no-startup-id seafile-applet
-# exec --no-startup-id redshift-gtk -l -37.8136:144.9631 -t 6500K:2700K
+exec --no-startup-id seafile-applet
+exec --no-startup-id redshift-gtk -l -37.8136:144.9631 -t 6500K:2700K
 # exec --no-startup-id ibus-daemon -drxR
 # exec --no-startup-id kdeconnect-indicator
-# exec --no-startup-id unclutter
 
 # --------------- i3 BINDINGS --------------
 # i3 Focus/Window mgmt
@@ -258,10 +259,10 @@ bindsym $mod+Shift+F10 reload
 bindsym $mod+Control+F10 restart
 
 # Resize window setup
-bindsym $mod+$alt+h	exec --no-startup-id i3resize left
-bindsym $mod+$alt+j	exec --no-startup-id i3resize down
-bindsym $mod+$alt+k	exec --no-startup-id i3resize up
-bindsym $mod+$alt+l	exec --no-startup-id i3resize right
+bindsym $mod+$alt+h	exec --no-startup-id swayresize left
+bindsym $mod+$alt+j	exec --no-startup-id swayresize down
+bindsym $mod+$alt+k	exec --no-startup-id swayresize up
+bindsym $mod+$alt+l	exec --no-startup-id swayresize right
 
 # gaps - https://www.reddit.com/r/i3wm/comments/3xcvy0/help_with_code_to_toggle_i3_gaps/cy3izw0/
 set $mode_gaps Toggle gaps: (1) on (2) off (3) plus outer (4) minus outer (5) plus inner (6) minus inner
@@ -333,3 +334,6 @@ bindsym Shift+Print exec --no-startup-id wl-copy < $(grimshot save area)
 bindsym Control+Print exec --no-startup-id wl-copy < $(grimshot save active)
 # bindsym $alt+Print exec --no-startup-id screenshot
 bindsym $mod+Shift+s exec --no-startup-id wl-copy < $(grimshot save area)
+
+include /etc/sway/config.d/*
+include $HOME/.config/sway/config.d/*
