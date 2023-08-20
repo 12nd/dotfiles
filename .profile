@@ -25,5 +25,7 @@ export CARGO_HOME="$HOME/.local/share/cargo"
 # Tool configs
 export SUDO_ASKPASS="$HOME/.scripts/tools/dpass"
 export FZF_DEFAULT_OPTS="--layout=reverse --height 85%"
+export _JAVA_AWT_WM_NONREPARENTING=1 # bspwm/dwm are nonreparenting
+export _JAVA_SETTINGS="-Dswing.aatext=TRUE -Dawt.useSystemAAFontSettings=on" # antialising for swing and default toolkit
 
 export XDG_SCREENSHOTS_DIR="$HOME/screenshots"

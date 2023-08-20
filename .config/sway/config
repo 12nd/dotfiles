@@ -49,18 +49,12 @@ set $display2 "DP-2"
 
 
 # # --------------- COLORS ---------------
-exec --no-startup-id setwp
+exec setwp
+# set colours from wal
 include "$HOME/.cache/wal/colors-sway"
 # wallpaper
 output "*" bg $wallpaper fill
 
-# set colours from wal
-# # set Xresources colors:
-# set_from_resource $normal_color color8 #333333
-# set_from_resource $focused_color color15 #ffffff
-# set_from_resource $alt_color color2 #0088cc
-# set_from_resource $color0 color0 #000000
-# set_from_resource $color1 color1 #888888
 set $transparent #00000000
 set $alertred #900000
 set $red #ff0000
@@ -126,17 +120,22 @@ input type:keyboard {
 	repeat_rate 50
 	xkb_options caps:escape
 }
+input type:pointer {
+	accel_profile flat
+	pointer_accel 0
+}
 
 
 # --------------- STARTUP ---------------
 
-# exec_always --no-startup-id reloaddisplay
-# exec --no-startup-id /usr/libexec/polkit-gnome-authentication-agent-1
+# exec_always reloaddisplay
+exec_always import-gsettings
+exec /usr/libexec/lxqt-policykit-agent
 
-exec --no-startup-id seafile-applet
-exec --no-startup-id redshift-gtk -l -37.8136:144.9631 -t 6500K:2700K
-# exec --no-startup-id ibus-daemon -drxR
-# exec --no-startup-id kdeconnect-indicator
+exec seafile-applet
+exec gammastep-indicator -l -37.8136:144.9631 -t 6500K:2700K
+# exec ibus-daemon -drxR
+# exec kdeconnect-indicator
 
 # --------------- i3 BINDINGS --------------
 # i3 Focus/Window mgmt
@@ -226,29 +225,29 @@ workspace 2$ws10 output $display2
 
 # switch to workspace
 
-bindsym $mod+1 exec --no-startup-id swaymonitorws goto $ws01
-bindsym $mod+2 exec --no-startup-id swaymonitorws goto $ws02
-bindsym $mod+3 exec --no-startup-id swaymonitorws goto $ws03
-bindsym $mod+4 exec --no-startup-id swaymonitorws goto $ws04
-bindsym $mod+5 exec --no-startup-id swaymonitorws goto $ws05
-bindsym $mod+6 exec --no-startup-id swaymonitorws goto $ws06
-bindsym $mod+7 exec --no-startup-id swaymonitorws goto $ws07
-bindsym $mod+8 exec --no-startup-id swaymonitorws goto $ws08
-bindsym $mod+9 exec --no-startup-id swaymonitorws goto $ws09
-bindsym $mod+0 exec --no-startup-id swaymonitorws goto $ws10
+bindsym $mod+1 exec swaymonitorws goto $ws01
+bindsym $mod+2 exec swaymonitorws goto $ws02
+bindsym $mod+3 exec swaymonitorws goto $ws03
+bindsym $mod+4 exec swaymonitorws goto $ws04
+bindsym $mod+5 exec swaymonitorws goto $ws05
+bindsym $mod+6 exec swaymonitorws goto $ws06
+bindsym $mod+7 exec swaymonitorws goto $ws07
+bindsym $mod+8 exec swaymonitorws goto $ws08
+bindsym $mod+9 exec swaymonitorws goto $ws09
+bindsym $mod+0 exec swaymonitorws goto $ws10
 
 # move focused container to workspace
 
-bindsym $mod+Shift+1 exec --no-startup-id swaymonitorws move $ws01
-bindsym $mod+Shift+2 exec --no-startup-id swaymonitorws move $ws02
-bindsym $mod+Shift+3 exec --no-startup-id swaymonitorws move $ws03
-bindsym $mod+Shift+4 exec --no-startup-id swaymonitorws move $ws04
-bindsym $mod+Shift+5 exec --no-startup-id swaymonitorws move $ws05
-bindsym $mod+Shift+6 exec --no-startup-id swaymonitorws move $ws06
-bindsym $mod+Shift+7 exec --no-startup-id swaymonitorws move $ws07
-bindsym $mod+Shift+8 exec --no-startup-id swaymonitorws move $ws08
-bindsym $mod+Shift+9 exec --no-startup-id swaymonitorws move $ws09
-bindsym $mod+Shift+0 exec --no-startup-id swaymonitorws move $ws10
+bindsym $mod+Shift+1 exec swaymonitorws move $ws01
+bindsym $mod+Shift+2 exec swaymonitorws move $ws02
+bindsym $mod+Shift+3 exec swaymonitorws move $ws03
+bindsym $mod+Shift+4 exec swaymonitorws move $ws04
+bindsym $mod+Shift+5 exec swaymonitorws move $ws05
+bindsym $mod+Shift+6 exec swaymonitorws move $ws06
+bindsym $mod+Shift+7 exec swaymonitorws move $ws07
+bindsym $mod+Shift+8 exec swaymonitorws move $ws08
+bindsym $mod+Shift+9 exec swaymonitorws move $ws09
+bindsym $mod+Shift+0 exec swaymonitorws move $ws10
 
 
 # alt tab
@@ -259,10 +258,10 @@ bindsym $mod+Shift+F10 reload
 bindsym $mod+Control+F10 restart
 
 # Resize window setup
-bindsym $mod+$alt+h	exec --no-startup-id swayresize left
-bindsym $mod+$alt+j	exec --no-startup-id swayresize down
-bindsym $mod+$alt+k	exec --no-startup-id swayresize up
-bindsym $mod+$alt+l	exec --no-startup-id swayresize right
+bindsym $mod+$alt+h	exec swayresize left
+bindsym $mod+$alt+j	exec swayresize down
+bindsym $mod+$alt+k	exec swayresize up
+bindsym $mod+$alt+l	exec swayresize right
 
 # gaps - https://www.reddit.com/r/i3wm/comments/3xcvy0/help_with_code_to_toggle_i3_gaps/cy3izw0/
 set $mode_gaps Toggle gaps: (1) on (2) off (3) plus outer (4) minus outer (5) plus inner (6) minus inner
@@ -289,51 +288,51 @@ bindsym $mod+o [tiling workspace="__focused__"] move workspace "reorder"; [works
 # --------------- APP & SYSTEM BINDINGS ---------------
 
 # programs
-bindsym $mod+Return exec --no-startup-id $TERMINAL
-bindsym $mod+Shift+Return exec --no-startup-id termdir
-bindsym $mod+Control+Return exec --no-startup-id termfloat
-bindsym $mod+space exec --no-startup-id bemenu-run -i
-bindsym $mod+$alt+space exec --no-startup-id j4-dmenu-desktop --dmenu='bemenu -i'
+bindsym $mod+Return exec $TERMINAL
+bindsym $mod+Shift+Return exec termdir
+bindsym $mod+Control+Return exec termfloat
+bindsym $mod+space exec bemenu-run -i
+bindsym $mod+$alt+space exec j4-dmenu-desktop --dmenu='bemenu -i'
 
-bindsym $mod+e exec --no-startup-id $TERMINAL -e $SHELL -i -c $FILE
+bindsym $mod+e exec $TERMINAL -e $SHELL -i -c $FILE
 bindsym $mod+Control+e exec thunar
 bindsym $mod+w exec $BROWSER
 
 bindsym $mod+p exec keepassxc
-bindsym $mod+Shift+p exec --no-startup-id termfloat btm
-bindsym $mod+Control+p exec --no-startup-id termfloat sudo powertop
-bindsym $mod+$alt+p exec --no-startup-id termfloat htop
+bindsym $mod+Shift+p exec termfloat btm
+bindsym $mod+Control+p exec termfloat sudo powertop
+bindsym $mod+$alt+p exec termfloat htop
 bindsym $mod+Shift+n exec net.cozic.joplin_desktop
 bindsym $mod+m exec evolution
 bindsym $mod+Control+c exec gnome-calculator
 
 # System hotkeys
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5
-bindsym Shift+XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
-bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5
-bindsym Shift+XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
+bindsym XF86MonBrightnessDown exec xbacklight -dec 5
+bindsym Shift+XF86MonBrightnessDown exec xbacklight -dec 10
+bindsym XF86MonBrightnessUp exec xbacklight -inc 5
+bindsym Shift+XF86MonBrightnessUp exec xbacklight -inc 10
 
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
-bindsym Shift+XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -1%
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
-bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +1%
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym Shift+XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -1%
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym Shift+XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +1%
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
-bindsym XF86Display exec --no-startup-id displayselect
+bindsym XF86Display exec displayselect
 
 # Script menus
-bindsym $mod+Shift+e exec --no-startup-id sdmenu
-bindsym $mod+Shift+m exec --no-startup-id mountmenu
-bindsym $mod+Control+m exec --no-startup-id umountmenu
-bindsym $mod+Shift+d exec --no-startup-id displayselect
-bindsym $mod+Shift+x exec --no-startup-id selectaudiosink
+bindsym $mod+Shift+e exec sdmenu
+bindsym $mod+Shift+m exec mountmenu
+bindsym $mod+Control+m exec umountmenu
+bindsym $mod+Shift+d exec displayselect
+bindsym $mod+Shift+x exec selectaudiosink
 
-bindsym Print exec --no-startup-id wl-copy < $(grimshot save output)
-bindsym Shift+Print exec --no-startup-id wl-copy < $(grimshot save area)
-bindsym Control+Print exec --no-startup-id wl-copy < $(grimshot save active)
-# bindsym $alt+Print exec --no-startup-id screenshot
-bindsym $mod+Shift+s exec --no-startup-id wl-copy < $(grimshot save area)
+bindsym Print exec wl-copy < $(grimshot save output)
+bindsym Shift+Print exec wl-copy < $(grimshot save area)
+bindsym Control+Print exec wl-copy < $(grimshot save active)
+# bindsym $alt+Print exec screenshot
+bindsym $mod+Shift+s exec wl-copy < $(grimshot save area)
 
 include /etc/sway/config.d/*
 include $HOME/.config/sway/config.d/*
