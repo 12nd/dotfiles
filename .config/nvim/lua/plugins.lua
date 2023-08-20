@@ -100,6 +100,14 @@ return require("packer").startup(function(use)
 	-- Fugitive
 	use("tpope/vim-fugitive")
 
+	-- Colorizer
+	use({
+		"norcalli/nvim-colorizer.lua",
+		config = function()
+			require("colorizer").setup {}
+		end,
+	})
+
 	-- Telescope
 	use({
 		"nvim-telescope/telescope.nvim",
