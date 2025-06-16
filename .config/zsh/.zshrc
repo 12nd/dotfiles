@@ -7,8 +7,8 @@ PS1="%F{015}%n%f%F{243}@%f%F{176}%m%f%F{243}:%f%(5~|%-1~/…/%3~|%4~) » "
 
 # Historys
 HISTFILE="$HOME/.local/share/zsh_history"
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=1000000000
+SAVEHIST=1000000000
 
 
 # Some misc options

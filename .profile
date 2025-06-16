@@ -27,5 +27,9 @@ export SUDO_ASKPASS="$HOME/.scripts/tools/dpass"
 export FZF_DEFAULT_OPTS="--layout=reverse --height 85%"
 export _JAVA_AWT_WM_NONREPARENTING=1 # bspwm/dwm are nonreparenting
 export _JAVA_SETTINGS="-Dswing.aatext=TRUE -Dawt.useSystemAAFontSettings=on" # antialising for swing and default toolkit
+export MOZ_ENABLE_WAYLAND=1
+export QT_STYLE_OVERRIDE=adwaita-dark
 
 export XDG_SCREENSHOTS_DIR="$HOME/screenshots"
+export XDG_SESSION_TYPE=wayland
+export XDG_CURRENT_DESKTOP=sway
