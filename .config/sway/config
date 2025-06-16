@@ -19,29 +19,29 @@ font pango:mono 12
 # Don't wrap around when changing focus
 focus_wrapping no
 
-for_window [instance="keepassxc"] floating enable
-for_window [instance="keepassxc"] sticky enable
-for_window [instance="gnome-calculator"] floating enable
+for_window [app_id=".*keepassxc.*"] floating enable
+for_window [app_id=".*keepassxc.*"] sticky enable
 
-for_window [instance="floater"] floating enable
-for_window [instance="floater"] resize set 1200 650
-for_window [instance="floater"] move position center
+for_window [app_id="floater"] floating enable
+for_window [app_id="floater"] resize set 1200 650
+for_window [app_id="floater"] move position center
 
-for_window [instance="quickterm"] floating enable
-for_window [instance="quickterm"] resize set 850 550
-for_window [instance="quickterm"] move position center
-for_window [instance="quickterm"] move scratchpad
+for_window [app_id="quickterm"] floating enable
+for_window [app_id="quickterm"] resize set 850 550
+for_window [app_id="quickterm"] move position center
+for_window [app_id="quickterm"] move scratchpad
 
 for_window [workspace=".*-f$"] floating enable
 
 # multi monitors
 output DP-1 {
 	mode 2560x1440@143.998Hz
-	position 1920 0
+	position 1080 0
 }
 output DP-2 {
-	mode 1920x1080@164.955Hz
+	mode 1920x1080@120.000Hz
 	position 0 0
+	transform 270
 }
 
 set $display1 "DP-1"
@@ -79,7 +79,7 @@ bar {
 	tray_output $display1
     colors {
         separator #666666
-        background #000000
+        background #000000c4
         statusline #dddddd
         #                   BORDER BACKGROUND TEXT
         focused_workspace $color2 $color2 $color0
@@ -98,7 +98,7 @@ bar {
 	tray_output none
     colors {
         separator #666666
-        background #000000
+        background #000000c4
         statusline #dddddd
         #                   BORDER BACKGROUND TEXT
         focused_workspace $color2 $color2 $color0
@@ -124,6 +124,8 @@ input type:pointer {
 	accel_profile flat
 	pointer_accel 0
 }
+# unclutter
+seat * hide_cursor 5000
 
 
 # --------------- STARTUP ---------------
@@ -258,10 +260,13 @@ bindsym $mod+Shift+F10 reload
 bindsym $mod+Control+F10 restart
 
 # Resize window setup
+bindsym $mod+$alt+j+l exec swayresize down && swayresize right
+bindsym $mod+$alt+h+k exec swayresize up && swayresize left
 bindsym $mod+$alt+h	exec swayresize left
 bindsym $mod+$alt+j	exec swayresize down
 bindsym $mod+$alt+k	exec swayresize up
 bindsym $mod+$alt+l	exec swayresize right
+
 
 # gaps - https://www.reddit.com/r/i3wm/comments/3xcvy0/help_with_code_to_toggle_i3_gaps/cy3izw0/
 set $mode_gaps Toggle gaps: (1) on (2) off (3) plus outer (4) minus outer (5) plus inner (6) minus inner
@@ -291,8 +296,8 @@ bindsym $mod+o [tiling workspace="__focused__"] move workspace "reorder"; [works
 bindsym $mod+Return exec $TERMINAL
 bindsym $mod+Shift+Return exec termdir
 bindsym $mod+Control+Return exec termfloat
-bindsym $mod+space exec bemenu-run -i
-bindsym $mod+$alt+space exec j4-dmenu-desktop --dmenu='bemenu -i'
+bindsym $mod+space exec DMENU_RUN -i
+bindsym $mod+$alt+space exec j4-dmenu-desktop --dmenu='$DMENU -i'
 
 bindsym $mod+e exec $TERMINAL -e $SHELL -i -c $FILE
 bindsym $mod+Control+e exec thunar
@@ -334,5 +339,7 @@ bindsym Control+Print exec wl-copy < $(grimshot save active)
 # bindsym $alt+Print exec screenshot
 bindsym $mod+Shift+s exec wl-copy < $(grimshot save area)
 
-include /etc/sway/config.d/*
-include $HOME/.config/sway/config.d/*
+# include /etc/sway/config.d/*.conf
+# include $HOME/.config/sway/config.d/*
+include '$(/usr/libexec/sway/layered-include "/etc/sway/config.d/*.conf" "${XDG_CONFIG_HOME:-$HOME/.config}/sway/config.d/*.conf")'
+

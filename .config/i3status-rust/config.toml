@@ -2,7 +2,7 @@
 theme = "native"
 
 [icons]
-icons = "awesome5"
+icons = "awesome4"
 
 
 [[block]]
@@ -38,7 +38,6 @@ critical_mem = 90
 
 [[block]]
 block = "amd_gpu"
-device = "card1"
 format = " $icon $utilization "
 format_alt = " $icon MEM: $vram_used_percents ($vram_used/$vram_total) "
 interval = 10

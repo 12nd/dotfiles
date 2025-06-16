@@ -1,22 +1,20 @@
 #!/bin/sh
-# This script was made by `goferito` on Github.
-# Some cleanup by Luke.
-# Swap i3 for sway
+# Luke's i3resize for sway
+# Modified logic to be more consistent with floating and tiling
 
 [ -z "$1" ] && echo "No direction provided" && exit 1
-distanceStr="2 px or 2 ppt"
+distanceStr="10 px or 2 ppt"
 
 moveChoice() {
-  swaymsg resize "$1" "$2" "$distanceStr" | grep '"success":true' || \
-    swaymsg resize "$3" "$4" "$distanceStr"
+  swaymsg resize "$1" "$2" "$distanceStr" || swaymsg resize "$3" "$4" "$distanceStr"
 }
 
 case $1 in
   up)
-    moveChoice grow up shrink down
+    moveChoice shrink down grow up
     ;;
   down)
-    moveChoice shrink up grow down
+    moveChoice grow down shrink up
     ;;
   left)
     moveChoice shrink right grow left
