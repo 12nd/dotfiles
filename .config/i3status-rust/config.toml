@@ -12,17 +12,6 @@ full = " $title.str(max_w:50) |"
 short = " $title.str(max_w:10) |"
 
 [[block]]
-block = "dnf"
-interval = 3600
-format = " $icon $count.eng(w:1) updates available "
-format_up_to_date = " $icon $count.eng(w:1) "
-critical_updates_regex = "(linux|linux-lts|linux-zen)"
-[[block.click]]
-# shows dmenu with cached available updates. Any dmenu alternative should also work.
-button = "left"
-cmd = "dnf list -q --upgrades | tail -n +2 | dmenu"
-
-[[block]]
 block = "cpu"
 interval = 10
 format_alt = " $icon $barchart $utilization "

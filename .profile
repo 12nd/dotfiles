@@ -33,3 +33,5 @@ export QT_STYLE_OVERRIDE=adwaita-dark
 export XDG_SCREENSHOTS_DIR="$HOME/screenshots"
 export XDG_SESSION_TYPE=wayland
 export XDG_CURRENT_DESKTOP=sway
+
+export WLR_RENDERER=vulkan
