@@ -35,7 +35,8 @@ for_window [workspace=".*-f$"] floating enable
 
 # multi monitors
 output DP-1 {
-	mode 2560x1440@143.998Hz
+	mode 3840x2160@240Hz
+	scale 1.25
 	position 1080 0
 }
 output DP-2 {
@@ -135,7 +136,7 @@ exec_always import-gsettings
 exec /usr/libexec/lxqt-policykit-agent
 
 exec seafile-applet
-exec gammastep-indicator -l -37.8136:144.9631 -t 6500K:2700K
+exec gammastep-indicator -l -37.8136:144.9631 -t 6500K:3700K -m wayland
 exec corectrl
 # exec ibus-daemon -drxR
 # exec kdeconnect-indicator
