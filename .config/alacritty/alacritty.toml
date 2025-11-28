@@ -1,0 +1,28 @@
+[colors.primary]
+background = "0x060204"
+
+[cursor]
+vi_mode_style = "Block"
+
+[font]
+size = 12
+
+[[keyboard.bindings]]
+action = "ToggleViMode"
+key = "Escape"
+mode = "Vi"
+
+[[keyboard.bindings]]
+action = "Paste"
+key = "Insert"
+mods = "Shift"
+
+[mouse]
+hide_when_typing = true
+
+[window]
+opacity = 0.98
+
+[window.padding]
+x = 3
+y = 3
